@@ -12,6 +12,7 @@ import { ServicesPage } from '@/pages/services/ServicesPage'
 import { ProfessionalsPage } from '@/pages/professionals/ProfessionalsPage'
 import { SchedulePage } from '@/pages/schedule/SchedulePage'
 import { SalesPage } from '@/pages/sales/SalesPage'
+import { PDVPage } from '@/pages/sales/PDVPage'
 import { StockPage } from '@/pages/stock/StockPage'
 import { CashRegisterPage } from '@/pages/cash-register/CashRegisterPage'
 import { FinancialPage } from '@/pages/financial/FinancialPage'
@@ -72,6 +73,7 @@ function AppRoutes() {
       <Route path="/auth/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
       <Route path="/auth/forgot-password" element={<PublicRoute><ForgotPasswordPage /></PublicRoute>} />
 
+      <Route path="/pdv" element={<ProtectedRoute><PDVPage /></ProtectedRoute>} />
       <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
         <Route index element={<DashboardPage />} />
         <Route path="products" element={<ProductsPage />} />

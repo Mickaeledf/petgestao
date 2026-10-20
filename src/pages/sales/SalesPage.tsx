@@ -1,12 +1,12 @@
-import { Eye, Plus, Search, ShoppingCart } from 'lucide-react'
+import { Plus, Search, ShoppingCart, Monitor } from 'lucide-react'
 import { useState, useEffect, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
-import { NewSaleDialog } from './NewSaleDialog'
 
 interface Sale {
   id: string
@@ -21,11 +21,11 @@ interface Sale {
 }
 
 export function SalesPage() {
+  const navigate = useNavigate()
   const { currentEstablishment } = useAuth()
   const [sales, setSales] = useState<Sale[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
-  const [showNew, setShowNew] = useState(false)
 
   const load = useCallback(async () => {
     if (!currentEstablishment) { setLoading(false); return }
@@ -63,7 +63,13 @@ export function SalesPage() {
   return (
     <div>
       <PageHeader title="Vendas / PDV" description="Ponto de venda e registro de vendas"
-        actions={<Button onClick={() => setShowNew(true)}><Plus className="w-4 h-4" /> Nova venda</Button>} />
+        actions={
+          <div className="flex gap-2">
+            <Button onClick={() => navigate('/pdv')}>
+              <Monitor className="w-4 h-4" /> Abrir PDV
+            </Button>
+          </div>
+        } />
       <Card>
         <div className="p-4 border-b border-gray-100">
           <div className="relative">
@@ -80,7 +86,7 @@ export function SalesPage() {
           ) : filtered.length === 0 ? (
             <EmptyState icon={ShoppingCart} title={search ? 'Nenhuma venda encontrada' : 'Nenhuma venda registrada'}
               description="Registre a primeira venda no PDV."
-              actionLabel={!search ? 'Nova venda' : undefined} onAction={!search ? () => setShowNew(true) : undefined} />
+              actionLabel={!search ? 'Abrir PDV' : undefined} onAction={!search ? () => navigate('/pdv') : undefined} />
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -114,7 +120,6 @@ export function SalesPage() {
           )}
         </CardContent>
       </Card>
-      {showNew && <NewSaleDialog onClose={() => setShowNew(false)} onSaved={() => { setShowNew(false); load() }} />}
     </div>
   )
 }

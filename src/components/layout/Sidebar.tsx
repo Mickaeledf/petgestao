@@ -8,6 +8,7 @@ import {
   FileText,
   Home,
   Key,
+  Monitor,
   Package,
   Scissors,
   Settings,
@@ -29,7 +30,8 @@ const menuGroups = [
     label: 'Principal',
     items: [
       { path: '/', label: 'Dashboard', icon: Home },
-      { path: '/sales', label: 'Vendas / PDV', icon: ShoppingCart },
+      { path: '/sales', label: 'Vendas', icon: ShoppingCart },
+      { path: '/pdv', label: 'PDV', icon: Monitor },
       { path: '/cash-register', label: 'Caixa', icon: CreditCard },
     ],
   },
