@@ -1,6 +1,7 @@
-import { Package, Plus, Search, Tags } from 'lucide-react'
+import { Camera, Package, Plus, Search, Tags } from 'lucide-react'
 import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/Button'
+import { BarcodeScanner } from '@/components/ui/BarcodeScanner'
 import { Card, CardContent } from '@/components/ui/Card'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { PageHeader } from '@/components/ui/PageHeader'
@@ -18,6 +19,7 @@ export function ProductsPage() {
   const [showForm, setShowForm] = useState(false)
   const [showCategories, setShowCategories] = useState(false)
   const [editingProduct, setEditingProduct] = useState<Product | null>(null)
+  const [showScanner, setShowScanner] = useState(false)
 
   const loadProducts = useCallback(async () => {
     if (!currentEstablishment) return
@@ -67,15 +69,24 @@ export function ProductsPage() {
 
       <Card>
         <div className="p-4 border-b border-gray-100">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Buscar por nome, código ou código de barras..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
-            />
+          <div className="flex gap-2">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Buscar por nome, código ou código de barras..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              />
+            </div>
+            <button
+              onClick={() => setShowScanner(true)}
+              className="flex items-center justify-center px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-600"
+              title="Escanear código de barras"
+            >
+              <Camera className="w-4 h-4" />
+            </button>
           </div>
         </div>
 
@@ -148,6 +159,20 @@ export function ProductsPage() {
       )}
       {showCategories && (
         <CategoriesManager onClose={() => setShowCategories(false)} />
+      )}
+      {showScanner && (
+        <BarcodeScanner
+          onClose={() => setShowScanner(false)}
+          onScan={(code) => {
+            setShowScanner(false)
+            setSearch(code)
+            const found = products.find((p) => p.barcode === code)
+            if (found) {
+              setEditingProduct(found)
+              setShowForm(true)
+            }
+          }}
+        />
       )}
     </div>
   )

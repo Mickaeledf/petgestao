@@ -1,6 +1,7 @@
-import { Minus, Plus, Trash2, X } from 'lucide-react'
+import { Camera, Minus, Plus, Trash2, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/Button'
+import { BarcodeScanner } from '@/components/ui/BarcodeScanner'
 import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
 
@@ -28,10 +29,11 @@ export function NewSaleDialog({ onClose, onSaved }: Props) {
   const [search, setSearch] = useState('')
   const [discount, setDiscount] = useState('0')
   const [paymentMethod, setPaymentMethod] = useState('dinheiro')
+  const [showScanner, setShowScanner] = useState(false)
 
   useEffect(() => {
     if (!currentEstablishment) return
-    supabase.from('products').select('id, name, sale_price').eq('establishment_id', currentEstablishment.id).eq('active', true).order('name')
+    supabase.from('products').select('id, name, sale_price, barcode').eq('establishment_id', currentEstablishment.id).eq('active', true).order('name')
       .then(({ data }) => setProducts(data ?? []))
     supabase.from('customers').select('id, name').eq('establishment_id', currentEstablishment.id).eq('status', 'active').order('name')
       .then(({ data }) => setCustomers(data ?? []))
@@ -123,8 +125,15 @@ export function NewSaleDialog({ onClose, onSaved }: Props) {
           {/* Products panel */}
           <div className="w-1/2 border-r border-gray-100 flex flex-col overflow-hidden">
             <div className="p-4 border-b border-gray-100">
-              <input type="text" placeholder="Buscar produto..." value={search} onChange={(e) => setSearch(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+              <div className="flex gap-2">
+                <input type="text" placeholder="Buscar produto..." value={search} onChange={(e) => setSearch(e.target.value)}
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+                <button onClick={() => setShowScanner(true)}
+                  className="flex items-center justify-center px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-600"
+                  title="Escanear código de barras">
+                  <Camera className="w-4 h-4" />
+                </button>
+              </div>
             </div>
             <div className="flex-1 overflow-y-auto p-2">
               {filteredProducts.map((p) => (
@@ -197,6 +206,17 @@ export function NewSaleDialog({ onClose, onSaved }: Props) {
           </div>
         </div>
       </div>
+      {showScanner && (
+        <BarcodeScanner
+          onClose={() => setShowScanner(false)}
+          onScan={(code) => {
+            setShowScanner(false)
+            const found = products.find((p: any) => p.barcode === code)
+            if (found) addToCart(found)
+            else setSearch(code)
+          }}
+        />
+      )}
     </div>
   )
 }

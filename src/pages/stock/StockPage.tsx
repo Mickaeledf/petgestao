@@ -1,4 +1,4 @@
-import { ArrowDownUp, Box, Minus, Plus, Search } from 'lucide-react'
+import { ArrowDownUp, Box, FileText, Minus, Plus, Search } from 'lucide-react'
 import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
@@ -6,6 +6,7 @@ import { EmptyState } from '@/components/ui/EmptyState'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
+import { NfeImportDialog } from './NfeImportDialog'
 import { StockAdjustDialog } from './StockAdjustDialog'
 
 interface StockItem {
@@ -23,6 +24,7 @@ export function StockPage() {
   const [filter, setFilter] = useState<'all' | 'low' | 'zero'>('all')
   const [adjusting, setAdjusting] = useState<StockItem | null>(null)
   const [showAdjust, setShowAdjust] = useState(false)
+  const [showNfeImport, setShowNfeImport] = useState(false)
 
   const load = useCallback(async () => {
     if (!currentEstablishment) { setLoading(false); return }
@@ -71,7 +73,8 @@ export function StockPage() {
 
   return (
     <div>
-      <PageHeader title="Estoque" description="Controle de estoque e movimentações" />
+      <PageHeader title="Estoque" description="Controle de estoque e movimentações"
+        actions={<Button variant="secondary" onClick={() => setShowNfeImport(true)}><FileText className="w-4 h-4" /> Importar NF-e</Button>} />
       <Card>
         <div className="p-4 border-b border-gray-100 flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
@@ -150,6 +153,9 @@ export function StockPage() {
       </Card>
       {showAdjust && adjusting && (
         <StockAdjustDialog item={adjusting} onClose={() => setShowAdjust(false)} onSaved={() => { setShowAdjust(false); load() }} />
+      )}
+      {showNfeImport && (
+        <NfeImportDialog onClose={() => setShowNfeImport(false)} onSaved={load} />
       )}
     </div>
   )
