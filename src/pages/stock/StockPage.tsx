@@ -102,12 +102,12 @@ export function StockPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
-                    <th className="px-6 py-3 font-medium text-gray-500">Produto</th>
-                    <th className="px-6 py-3 font-medium text-gray-500 text-right">Quantidade</th>
-                    <th className="px-6 py-3 font-medium text-gray-500">Unidade</th>
-                    <th className="px-6 py-3 font-medium text-gray-500 text-right">Mínimo</th>
-                    <th className="px-6 py-3 font-medium text-gray-500">Status</th>
-                    <th className="px-6 py-3 font-medium text-gray-500 text-right">Ações</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Produto</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right">Quantidade</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 hidden md:table-cell">Unidade</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right hidden sm:table-cell">Mínimo</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right">Ações</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -116,13 +116,13 @@ export function StockPage() {
                     const isZero = item.quantity <= 0
                     return (
                       <tr key={item.product_id} className="border-b border-gray-50 hover:bg-gray-50">
-                        <td className="px-6 py-3 font-medium text-gray-900">{item.product.name}</td>
-                        <td className={`px-6 py-3 text-right font-medium ${isZero ? 'text-danger-600' : isLow ? 'text-warning-600' : 'text-gray-900'}`}>
+                        <td className="px-3 sm:px-6 py-3 font-medium text-gray-900">{item.product.name}</td>
+                        <td className={`px-3 sm:px-6 py-3 text-right font-medium ${isZero ? 'text-danger-600' : isLow ? 'text-warning-600' : 'text-gray-900'}`}>
                           {fmt(item.quantity)}
                         </td>
-                        <td className="px-6 py-3 text-gray-600">{item.product.unit}</td>
-                        <td className="px-6 py-3 text-gray-500 text-right">{fmt(item.product.minimum_stock)}</td>
-                        <td className="px-6 py-3">
+                        <td className="px-3 sm:px-6 py-3 text-gray-600 hidden md:table-cell">{item.product.unit}</td>
+                        <td className="px-3 sm:px-6 py-3 text-gray-500 text-right hidden sm:table-cell">{fmt(item.product.minimum_stock)}</td>
+                        <td className="px-3 sm:px-6 py-3">
                           {isZero ? (
                             <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-danger-50 text-danger-700">Sem estoque</span>
                           ) : isLow ? (
@@ -131,7 +131,7 @@ export function StockPage() {
                             <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-success-50 text-success-700">Normal</span>
                           )}
                         </td>
-                        <td className="px-6 py-3 text-right">
+                        <td className="px-3 sm:px-6 py-3 text-right">
                           <div className="flex items-center justify-end gap-1">
                             <button onClick={() => { setAdjusting(item); setShowAdjust(true) }}
                               className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-500" title="Ajustar estoque">

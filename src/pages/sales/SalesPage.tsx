@@ -86,11 +86,11 @@ export function SalesPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
-                    <th className="px-6 py-3 font-medium text-gray-500">#</th>
-                    <th className="px-6 py-3 font-medium text-gray-500">Cliente</th>
-                    <th className="px-6 py-3 font-medium text-gray-500">Data</th>
-                    <th className="px-6 py-3 font-medium text-gray-500 text-right">Total</th>
-                    <th className="px-6 py-3 font-medium text-gray-500">Status</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">#</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Cliente</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">Data</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right">Total</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -98,11 +98,11 @@ export function SalesPage() {
                     const st = statusLabel[s.status]
                     return (
                       <tr key={s.id} className="border-b border-gray-50 hover:bg-gray-50">
-                        <td className="px-6 py-3 font-mono text-xs text-gray-500">{s.sale_number}</td>
-                        <td className="px-6 py-3 font-medium text-gray-900">{s.customer?.name ?? 'Consumidor final'}</td>
-                        <td className="px-6 py-3 text-gray-600">{fmtDate(s.created_at)}</td>
-                        <td className="px-6 py-3 font-medium text-gray-900 text-right">{fmt(s.total)}</td>
-                        <td className="px-6 py-3">
+                        <td className="px-3 sm:px-6 py-3 font-mono text-xs text-gray-500 hidden sm:table-cell">{s.sale_number}</td>
+                        <td className="px-3 sm:px-6 py-3 font-medium text-gray-900">{s.customer?.name ?? 'Consumidor final'}</td>
+                        <td className="px-3 sm:px-6 py-3 text-gray-600 hidden sm:table-cell">{fmtDate(s.created_at)}</td>
+                        <td className="px-3 sm:px-6 py-3 font-medium text-gray-900 text-right">{fmt(s.total)}</td>
+                        <td className="px-3 sm:px-6 py-3">
                           <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span>
                         </td>
                       </tr>

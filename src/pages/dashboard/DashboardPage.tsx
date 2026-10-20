@@ -162,7 +162,7 @@ export function DashboardPage() {
             ) : (
               <ul className="divide-y divide-gray-50">
                 {lowStockItems.map((it) => (
-                  <li key={it.id} className="px-6 py-3 flex justify-between items-center">
+                  <li key={it.id} className="px-3 sm:px-3 sm:px-6 py-3 flex justify-between items-center">
                     <span className="text-sm text-gray-900">{it.product?.name}</span>
                     <span className={`text-sm font-medium ${it.quantity === 0 ? 'text-danger-600' : 'text-warning-600'}`}>
                       {it.quantity} un.
@@ -184,7 +184,7 @@ export function DashboardPage() {
             ) : (
               <ul className="divide-y divide-gray-50">
                 {nextAppointments.map((a: any) => (
-                  <li key={a.id} className="px-6 py-3">
+                  <li key={a.id} className="px-3 sm:px-3 sm:px-6 py-3">
                     <div className="flex justify-between">
                       <span className="text-sm font-medium text-gray-900">{a.start_time?.slice(0, 5)}</span>
                       <span className="text-xs text-gray-500">{a.service?.name ?? 'Serviço'}</span>
@@ -207,7 +207,7 @@ export function DashboardPage() {
             ) : (
               <ul className="divide-y divide-gray-50">
                 {recentSales.map((s: any) => (
-                  <li key={s.id} className="px-6 py-3 flex justify-between items-center">
+                  <li key={s.id} className="px-3 sm:px-3 sm:px-6 py-3 flex justify-between items-center">
                     <div>
                       <span className="text-sm font-medium text-gray-900">#{s.sale_number}</span>
                       <p className="text-xs text-gray-500">{s.customer?.name ?? 'Consumidor final'}</p>

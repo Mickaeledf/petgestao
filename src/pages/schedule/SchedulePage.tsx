@@ -78,25 +78,25 @@ export function SchedulePage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                <th className="px-6 py-3 font-medium text-gray-500">Horário</th>
-                <th className="px-6 py-3 font-medium text-gray-500">Cliente</th>
-                <th className="px-6 py-3 font-medium text-gray-500">Pet</th>
-                <th className="px-6 py-3 font-medium text-gray-500">Serviço</th>
-                <th className="px-6 py-3 font-medium text-gray-500">Profissional</th>
-                <th className="px-6 py-3 font-medium text-gray-500 text-right">Valor</th>
-                <th className="px-6 py-3 font-medium text-gray-500">Status</th>
+                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Horário</th>
+                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Cliente</th>
+                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Pet</th>
+                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Serviço</th>
+                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Profissional</th>
+                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th>
+                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Status</th>
               </tr></thead><tbody>
                 {appointments.map((a) => {
                   const st = statusLabel[a.status] ?? { text: a.status, cls: 'bg-gray-100 text-gray-600' }
                   return (
                     <tr key={a.id} className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer" onClick={() => { setEditing(a); setShowForm(true) }}>
-                      <td className="px-6 py-3 font-mono text-gray-900">{a.start_time.slice(0, 5)}{a.end_time ? ` - ${a.end_time.slice(0, 5)}` : ''}</td>
-                      <td className="px-6 py-3 font-medium text-gray-900">{a.customer?.name ?? '—'}</td>
-                      <td className="px-6 py-3 text-gray-600">{a.pet?.name ?? '—'}</td>
-                      <td className="px-6 py-3 text-gray-600">{a.service?.name ?? '—'}</td>
-                      <td className="px-6 py-3 text-gray-600">{a.professional?.name ?? '—'}</td>
-                      <td className="px-6 py-3 text-gray-900 text-right">{a.price ? fmt(a.price) : '—'}</td>
-                      <td className="px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
+                      <td className="px-3 sm:px-6 py-3 font-mono text-gray-900">{a.start_time.slice(0, 5)}{a.end_time ? ` - ${a.end_time.slice(0, 5)}` : ''}</td>
+                      <td className="px-3 sm:px-6 py-3 font-medium text-gray-900">{a.customer?.name ?? '—'}</td>
+                      <td className="px-3 sm:px-6 py-3 text-gray-600">{a.pet?.name ?? '—'}</td>
+                      <td className="px-3 sm:px-6 py-3 text-gray-600">{a.service?.name ?? '—'}</td>
+                      <td className="px-3 sm:px-6 py-3 text-gray-600">{a.professional?.name ?? '—'}</td>
+                      <td className="px-3 sm:px-6 py-3 text-gray-900 text-right">{a.price ? fmt(a.price) : '—'}</td>
+                      <td className="px-3 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
                     </tr>)
                 })}
               </tbody></table>

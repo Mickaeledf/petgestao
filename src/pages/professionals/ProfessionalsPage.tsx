@@ -59,18 +59,18 @@ export function ProfessionalsPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
-                    <th className="px-6 py-3 font-medium text-gray-500">Nome</th>
-                    <th className="px-6 py-3 font-medium text-gray-500">Telefone</th>
-                    <th className="px-6 py-3 font-medium text-gray-500">Status</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Telefone</th>
+                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filtered.map((p) => (
                     <tr key={p.id} className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer"
                       onClick={() => { setEditing(p); setShowForm(true) }}>
-                      <td className="px-6 py-3 font-medium text-gray-900">{p.name}</td>
-                      <td className="px-6 py-3 text-gray-600">{p.phone ?? '—'}</td>
-                      <td className="px-6 py-3">
+                      <td className="px-3 sm:px-6 py-3 font-medium text-gray-900">{p.name}</td>
+                      <td className="px-3 sm:px-6 py-3 text-gray-600">{p.phone ?? '—'}</td>
+                      <td className="px-3 sm:px-6 py-3">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${p.active ? 'bg-success-50 text-success-700' : 'bg-gray-100 text-gray-600'}`}>
                           {p.active ? 'Ativo' : 'Inativo'}
                         </span>
