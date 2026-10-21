@@ -1,4 +1,4 @@
-import { ArrowDownUp, Box, FileText, Minus, Plus, Search } from 'lucide-react'
+import { ArrowDownUp, Box, FileText, Search } from 'lucide-react'
 import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'

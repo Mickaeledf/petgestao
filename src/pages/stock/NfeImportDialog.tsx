@@ -118,7 +118,7 @@ export function NfeImportDialog({ onClose, onSaved }: Props) {
 
       for (const nfeProd of parsed.produtos) {
         if (nfeProd.cEAN && products) {
-          const match = products.find((p: any) => p.barcode === nfeProd.cEAN)
+          const match = (products as any[]).find((p) => p.barcode === nfeProd.cEAN)
           if (match) {
             nfeProd.matched = { id: match.id, name: match.name }
           }

@@ -20,12 +20,12 @@ export function OnboardingPage() {
     if (!name.trim()) { setError('Informe o nome do seu pet shop.'); return }
 
     setLoading(true)
-    const { data, error: err } = await supabase.rpc('create_establishment_with_owner', {
+    const { error: err } = await supabase.rpc('create_establishment_with_owner' as any, {
       p_name: name.trim(),
       p_document: document.trim() || null,
       p_phone: phone.trim() || null,
       p_email: email.trim() || null,
-    })
+    } as any)
     setLoading(false)
 
     if (err) { setError(err.message); return }

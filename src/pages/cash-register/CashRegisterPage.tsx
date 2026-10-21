@@ -1,4 +1,4 @@
-import { DollarSign, Lock, Unlock } from 'lucide-react'
+import { Lock, Unlock } from 'lucide-react'
 import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader } from '@/components/ui/Card'

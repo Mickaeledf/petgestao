@@ -1,7 +1,6 @@
-import { X, Plus, Trash2 } from 'lucide-react'
+import { X, Trash2 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/Button'
-import { Input } from '@/components/ui/Input'
 import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
 

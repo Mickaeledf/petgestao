@@ -33,7 +33,7 @@ export function SettingsPage() {
       setLoading(true)
       const { data } = await supabase.from('establishments').select('*').eq('id', currentEstablishment!.id).single()
       if (data) {
-        setName(data.name ?? '')
+        setName((data as any).name ?? '')
         setDocument((data as any).document ?? '')
         setPhone((data as any).phone ?? '')
         setEmail((data as any).email ?? '')
