@@ -28,10 +28,10 @@ interface StatCardProps {
 function StatCard({ label, value, icon, trend, color }: StatCardProps) {
   return (
     <Card>
-      <CardContent className="flex items-start justify-between">
-        <div>
+      <CardContent className="flex items-center justify-between gap-4">
+        <div className="min-w-0">
           <p className="text-sm text-gray-500">{label}</p>
-          <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
+          <p className="text-xl sm:text-2xl font-bold text-gray-900 mt-1 truncate">{value}</p>
           {trend && (
             <div className={`flex items-center gap-1 mt-2 text-sm ${trend.positive ? 'text-success-600' : 'text-danger-600'}`}>
               {trend.positive ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />}
@@ -39,7 +39,7 @@ function StatCard({ label, value, icon, trend, color }: StatCardProps) {
             </div>
           )}
         </div>
-        <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${color}`}>
+        <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center shrink-0 ${color}`}>
           {icon}
         </div>
       </CardContent>
@@ -162,7 +162,7 @@ export function DashboardPage() {
             ) : (
               <ul className="divide-y divide-gray-50">
                 {lowStockItems.map((it) => (
-                  <li key={it.id} className="px-3 sm:px-3 sm:px-6 py-3 flex justify-between items-center">
+                  <li key={it.id} className="px-4 sm:px-6 py-3 flex justify-between items-center">
                     <span className="text-sm text-gray-900">{it.product?.name}</span>
                     <span className={`text-sm font-medium ${it.quantity === 0 ? 'text-danger-600' : 'text-warning-600'}`}>
                       {it.quantity} un.
@@ -184,7 +184,7 @@ export function DashboardPage() {
             ) : (
               <ul className="divide-y divide-gray-50">
                 {nextAppointments.map((a: any) => (
-                  <li key={a.id} className="px-3 sm:px-3 sm:px-6 py-3">
+                  <li key={a.id} className="px-4 sm:px-6 py-3">
                     <div className="flex justify-between">
                       <span className="text-sm font-medium text-gray-900">{a.start_time?.slice(0, 5)}</span>
                       <span className="text-xs text-gray-500">{a.service?.name ?? 'Serviço'}</span>
@@ -207,7 +207,7 @@ export function DashboardPage() {
             ) : (
               <ul className="divide-y divide-gray-50">
                 {recentSales.map((s: any) => (
-                  <li key={s.id} className="px-3 sm:px-3 sm:px-6 py-3 flex justify-between items-center">
+                  <li key={s.id} className="px-4 sm:px-6 py-3 flex justify-between items-center">
                     <div>
                       <span className="text-sm font-medium text-gray-900">#{s.sale_number}</span>
                       <p className="text-xs text-gray-500">{s.customer?.name ?? 'Consumidor final'}</p>
