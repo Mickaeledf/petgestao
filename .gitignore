@@ -32,3 +32,5 @@ supabase/.temp
 
 # Claude
 .claude/
+
+.vercel
