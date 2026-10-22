@@ -1,8 +1,7 @@
-import { Calendar, Plus } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
-import { EmptyState } from '@/components/ui/EmptyState'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
@@ -62,9 +61,9 @@ export function SchedulePage() {
         actions={<Button onClick={() => { setEditing(null); setShowForm(true) }}><Plus className="w-4 h-4" /> Novo agendamento</Button>} />
 
       <Card>
-        <div className="p-4 border-b border-gray-100 flex items-center gap-4">
+        <div className="p-5 border-b border-gray-100 flex items-center gap-4">
           <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+            className="px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
           <span className="text-sm text-gray-600">
             {new Date(selectedDate + 'T12:00:00').toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}
           </span>
@@ -72,34 +71,52 @@ export function SchedulePage() {
         <CardContent className="p-0">
           {loading ? (
             <div className="flex items-center justify-center py-12"><div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" /></div>
-          ) : appointments.length === 0 ? (
-            <EmptyState icon={Calendar} title="Nenhum agendamento nesta data" description="Agende banho e tosa para seus clientes."
-              actionLabel="Agendar" onAction={() => setShowForm(true)} />
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Horário</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Cliente</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Pet</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Serviço</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Profissional</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Horário</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Cliente</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Pet</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Serviço</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Profissional</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
               </tr></thead><tbody>
-                {appointments.map((a) => {
+                {appointments.length > 0 ? appointments.map((a) => {
                   const st = statusLabel[a.status] ?? { text: a.status, cls: 'bg-gray-100 text-gray-600' }
                   return (
                     <tr key={a.id} className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer" onClick={() => { setEditing(a); setShowForm(true) }}>
-                      <td className="px-3 sm:px-6 py-3 font-mono text-gray-900">{a.start_time.slice(0, 5)}{a.end_time ? ` - ${a.end_time.slice(0, 5)}` : ''}</td>
-                      <td className="px-3 sm:px-6 py-3 font-medium text-gray-900">{a.customer?.name ?? '—'}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600">{a.pet?.name ?? '—'}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600">{a.service?.name ?? '—'}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600">{a.professional?.name ?? '—'}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-900 text-right">{a.price ? fmt(a.price) : '—'}</td>
-                      <td className="px-3 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
+                      <td className="px-4 sm:px-6 py-3 font-mono text-gray-900">{a.start_time.slice(0, 5)}{a.end_time ? ` - ${a.end_time.slice(0, 5)}` : ''}</td>
+                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{a.customer?.name ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600">{a.pet?.name ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600">{a.service?.name ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600">{a.professional?.name ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-900 text-right">{a.price ? fmt(a.price) : '—'}</td>
+                      <td className="px-4 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
                     </tr>)
-                })}
+                }) : [
+                  { time: '08:00 - 09:00', client: 'Ana Costa', pet: 'Thor', service: 'Banho + Tosa', prof: 'Maria Silva', price: 'R$ 85,00', st: { text: 'Agendado', cls: 'bg-primary-50 text-primary-700' } },
+                  { time: '09:30 - 10:30', client: 'Carlos Lima', pet: 'Luna', service: 'Banho', prof: 'João Santos', price: 'R$ 45,00', st: { text: 'Confirmado', cls: 'bg-primary-50 text-primary-700' } },
+                  { time: '11:00 - 12:00', client: 'Fernanda Reis', pet: 'Bob', service: 'Tosa Higiênica', prof: 'Maria Silva', price: 'R$ 60,00', st: { text: 'Agendado', cls: 'bg-primary-50 text-primary-700' } },
+                  { time: '14:00 - 15:00', client: 'Pedro Souza', pet: 'Mel', service: 'Banho + Hidratação', prof: 'Ana Oliveira', price: 'R$ 95,00', st: { text: 'Agendado', cls: 'bg-primary-50 text-primary-700' } },
+                ].map((g, i) => (
+                  <tr key={i} className="border-b border-gray-50 opacity-40 pointer-events-none select-none">
+                    <td className="px-4 sm:px-6 py-3 font-mono text-gray-900">{g.time}</td>
+                    <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{g.client}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-600">{g.pet}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-600">{g.service}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-600">{g.prof}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-900 text-right">{g.price}</td>
+                    <td className="px-4 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${g.st.cls}`}>{g.st.text}</span></td>
+                  </tr>
+                ))}
               </tbody></table>
+              {appointments.length === 0 && (
+                <div className="text-center py-6 border-t border-gray-100">
+                  <p className="text-sm text-gray-500 mb-3">Os dados acima são exemplos. Agende banho e tosa para seus clientes.</p>
+                  <Button onClick={() => setShowForm(true)}><Plus className="w-4 h-4" /> Agendar</Button>
+                </div>
+              )}
             </div>
           )}
         </CardContent>

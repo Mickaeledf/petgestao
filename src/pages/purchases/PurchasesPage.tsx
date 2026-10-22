@@ -63,11 +63,11 @@ export function PurchasesPage() {
       <PageHeader title="Compras" description="Pedidos de compra e recebimento de mercadorias"
         actions={<Button onClick={() => { setEditing(null); setShowForm(true) }}><Plus className="w-4 h-4" /> Nova compra</Button>} />
       <Card>
-        <div className="p-4 border-b border-gray-100">
-          <div className="relative">
+        <div className="p-5 border-b border-gray-100">
+          <div className="relative max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input type="text" placeholder="Buscar por número ou fornecedor..." value={search} onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+              className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
           </div>
         </div>
         <CardContent className="p-0">
@@ -79,23 +79,23 @@ export function PurchasesPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">#</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Fornecedor</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">Data</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 hidden md:table-cell">Previsão</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right">Total</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">#</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Fornecedor</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">Data</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden md:table-cell">Previsão</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Total</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
               </tr></thead><tbody>
                 {filtered.map((p) => {
                   const st = statusLabel[p.status] ?? { text: p.status, cls: 'bg-gray-100 text-gray-600' }
                   return (
                     <tr key={p.id} className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer" onClick={() => { setEditing(p); setShowForm(true) }}>
-                      <td className="px-3 sm:px-6 py-3 font-mono text-gray-900 hidden sm:table-cell">{p.purchase_number}</td>
-                      <td className="px-3 sm:px-6 py-3 font-medium text-gray-900">{p.supplier?.name ?? '—'}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600 hidden sm:table-cell">{fmtDate(p.created_at)}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600 hidden md:table-cell">{fmtDate(p.expected_date)}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-900 text-right font-medium">{fmt(p.total)}</td>
-                      <td className="px-3 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
+                      <td className="px-4 sm:px-6 py-3 font-mono text-gray-900 hidden sm:table-cell">{p.purchase_number}</td>
+                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{p.supplier?.name ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600 hidden sm:table-cell">{fmtDate(p.created_at)}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600 hidden md:table-cell">{fmtDate(p.expected_date)}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-900 text-right font-medium">{fmt(p.total)}</td>
+                      <td className="px-4 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
                     </tr>)
                 })}
               </tbody></table>

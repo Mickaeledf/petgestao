@@ -155,14 +155,14 @@ export function CashRegisterPage() {
             <CardContent className="p-0">
               {movements.length === 0 ? <p className="text-center text-gray-400 py-6 text-sm">Nenhuma movimentação</p> : (
                 <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Tipo</th><th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Descrição</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th><th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Hora</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Tipo</th><th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Descrição</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th><th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Hora</th>
                 </tr></thead><tbody>{movements.map((m) => (
                   <tr key={m.id} className="border-b border-gray-50">
-                    <td className="px-3 sm:px-6 py-3 text-gray-600">{movTypeLabel[m.movement_type] ?? m.movement_type}</td>
-                    <td className="px-3 sm:px-6 py-3 text-gray-600">{m.description ?? '—'}</td>
-                    <td className={`px-3 sm:px-6 py-3 font-medium text-right ${m.amount >= 0 ? 'text-success-600' : 'text-danger-600'}`}>{m.amount >= 0 ? '+' : ''}{fmt(m.amount)}</td>
-                    <td className="px-3 sm:px-6 py-3 text-gray-500 text-xs">{fmtDate(m.created_at)}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-600">{movTypeLabel[m.movement_type] ?? m.movement_type}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-600">{m.description ?? '—'}</td>
+                    <td className={`px-4 sm:px-6 py-3 font-medium text-right ${m.amount >= 0 ? 'text-success-600' : 'text-danger-600'}`}>{m.amount >= 0 ? '+' : ''}{fmt(m.amount)}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-500 text-xs">{fmtDate(m.created_at)}</td>
                   </tr>))}</tbody></table>)}
             </CardContent></Card>
           <Card><CardContent className="p-4 flex items-center gap-4">

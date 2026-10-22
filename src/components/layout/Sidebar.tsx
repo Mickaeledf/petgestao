@@ -18,7 +18,6 @@ import {
   Users,
   Users2,
   Clipboard,
-  ChevronLeft,
   X,
   PawPrint,
 } from 'lucide-react'
@@ -69,12 +68,10 @@ const menuGroups = [
 
 interface SidebarProps {
   open: boolean
-  collapsed: boolean
   onClose: () => void
-  onToggleCollapse: () => void
 }
 
-export function Sidebar({ open, collapsed, onClose, onToggleCollapse }: SidebarProps) {
+export function Sidebar({ open, onClose }: SidebarProps) {
   const location = useLocation()
 
   const prevPath = useRef(location.pathname)
@@ -95,51 +92,31 @@ export function Sidebar({ open, collapsed, onClose, onToggleCollapse }: SidebarP
       )}
 
       <aside
-        className={`fixed top-0 left-0 h-full bg-sidebar z-50 flex flex-col transition-all duration-300
-          ${open ? 'translate-x-0' : '-translate-x-full'}
-          lg:translate-x-0
-          ${collapsed ? 'lg:w-[72px]' : 'lg:w-64'}
-          w-72
+        className={`fixed top-0 left-0 h-full bg-sidebar z-50 flex flex-col transition-all duration-300 w-72 lg:w-64
+          ${open ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0
         `}
       >
         <div className="flex items-center justify-between h-16 px-4 border-b border-white/10">
-          {!collapsed && (
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
-                <PawPrint className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-lg font-bold text-white tracking-tight">PetGestão</span>
-            </div>
-          )}
-          {collapsed && (
-            <div className="w-9 h-9 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-xl flex items-center justify-center mx-auto shadow-lg">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
               <PawPrint className="w-5 h-5 text-white" />
             </div>
-          )}
+            <span className="text-lg font-bold text-white tracking-tight">PetGestão</span>
+          </div>
           <button
             onClick={onClose}
             className="p-1.5 rounded-lg hover:bg-white/10 text-sidebar-text lg:hidden"
           >
             <X className="w-5 h-5" />
           </button>
-          <button
-            onClick={onToggleCollapse}
-            className="p-1.5 rounded-lg hover:bg-white/10 text-sidebar-text hidden lg:block"
-            title={collapsed ? 'Expandir menu' : 'Recolher menu'}
-          >
-            <ChevronLeft className={`w-4 h-4 transition-transform ${collapsed ? 'rotate-180' : ''}`} />
-          </button>
         </div>
 
         <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-4">
           {menuGroups.map((group) => (
             <div key={group.label}>
-              {!collapsed && (
-                <p className="px-3 mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-sidebar-text/40">
-                  {group.label}
-                </p>
-              )}
-              {collapsed && <div className="border-t border-white/10 my-2 mx-2" />}
+              <p className="px-3 mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-sidebar-text/40">
+                {group.label}
+              </p>
               <div className="space-y-0.5">
                 {group.items.map((item) => (
                   <NavLink
@@ -151,12 +128,11 @@ export function Sidebar({ open, collapsed, onClose, onToggleCollapse }: SidebarP
                         isActive
                           ? 'bg-gradient-to-r from-emerald-500/20 to-teal-500/10 text-emerald-400 font-medium border-l-2 border-emerald-400'
                           : 'text-sidebar-text hover:bg-white/5 hover:text-white'
-                      } ${collapsed ? 'justify-center px-2' : ''}`
+                      }`
                     }
-                    title={collapsed ? item.label : undefined}
                   >
                     <item.icon className="w-5 h-5 shrink-0" />
-                    {!collapsed && <span>{item.label}</span>}
+                    <span>{item.label}</span>
                   </NavLink>
                 ))}
               </div>
@@ -165,9 +141,7 @@ export function Sidebar({ open, collapsed, onClose, onToggleCollapse }: SidebarP
         </nav>
 
         <div className="p-4 border-t border-white/10">
-          {!collapsed && (
-            <p className="text-[11px] text-sidebar-text/40">PetGestão v0.1.0</p>
-          )}
+          <p className="text-[11px] text-sidebar-text/40">PetGestão v0.1.0</p>
         </div>
       </aside>
     </>

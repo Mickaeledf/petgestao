@@ -50,15 +50,15 @@ export function CustomersPage() {
         }
       />
       <Card>
-        <div className="p-4 border-b border-gray-100">
-          <div className="relative">
+        <div className="p-5 border-b border-gray-100">
+          <div className="relative max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
               type="text"
               placeholder="Buscar por nome, telefone ou e-mail..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
         </div>
@@ -80,10 +80,10 @@ export function CustomersPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Telefone</th>
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">E-mail</th>
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Telefone</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">E-mail</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -93,10 +93,10 @@ export function CustomersPage() {
                       className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer"
                       onClick={() => { setEditingCustomer(customer); setShowForm(true) }}
                     >
-                      <td className="px-3 sm:px-6 py-3 font-medium text-gray-900">{customer.name}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600">{customer.phone ?? '—'}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600 hidden sm:table-cell">{customer.email ?? '—'}</td>
-                      <td className="px-3 sm:px-6 py-3">
+                      <td className="px-4 sm:px-6 py-3.5 font-medium text-gray-900">{customer.name}</td>
+                      <td className="px-4 sm:px-6 py-3.5 text-gray-600">{customer.phone ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-3.5 text-gray-600 hidden sm:table-cell">{customer.email ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-3.5">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                           customer.status === 'active' ? 'bg-success-50 text-success-700' : 'bg-gray-100 text-gray-600'
                         }`}>

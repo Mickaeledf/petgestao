@@ -155,78 +155,78 @@ export function ReportsPage() {
             <CardContent className="p-0 overflow-x-auto">
               {activeReport === 'sales' && (
                 <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">#</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Cliente</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Data</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right">Total</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">#</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Cliente</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Data</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Total</th>
                 </tr></thead><tbody>{data.map((r: any) => (
                   <tr key={r.id} className="border-b border-gray-50">
-                    <td className="px-3 sm:px-6 py-3 font-mono">{r.sale_number}</td>
-                    <td className="px-3 sm:px-6 py-3">{r.customer?.name ?? 'Consumidor final'}</td>
-                    <td className="px-3 sm:px-6 py-3 text-gray-600">{r.completed_at ? fmtDate(r.completed_at) : '—'}</td>
-                    <td className="px-3 sm:px-6 py-3 text-right font-medium text-success-600">{fmt(r.total)}</td>
+                    <td className="px-4 sm:px-6 py-3 font-mono">{r.sale_number}</td>
+                    <td className="px-4 sm:px-6 py-3">{r.customer?.name ?? 'Consumidor final'}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.completed_at ? fmtDate(r.completed_at) : '—'}</td>
+                    <td className="px-4 sm:px-6 py-3 text-right font-medium text-success-600">{fmt(r.total)}</td>
                   </tr>))}</tbody></table>
               )}
               {activeReport === 'financial' && (
                 <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Tipo</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Descrição</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Vencimento</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Tipo</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Descrição</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Vencimento</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
                 </tr></thead><tbody>{data.map((r: any) => (
                   <tr key={r.id} className="border-b border-gray-50">
-                    <td className="px-3 sm:px-6 py-3"><span className={`text-xs font-medium px-2 py-0.5 rounded-full ${r.type === 'income' ? 'bg-success-50 text-success-700' : 'bg-danger-50 text-danger-700'}`}>{r.type === 'income' ? 'Receita' : 'Despesa'}</span></td>
-                    <td className="px-3 sm:px-6 py-3">{r.description}</td>
-                    <td className="px-3 sm:px-6 py-3 text-gray-600">{r.due_date ? fmtDate(r.due_date) : '—'}</td>
-                    <td className={`px-3 sm:px-6 py-3 text-right font-medium ${r.type === 'income' ? 'text-success-600' : 'text-danger-600'}`}>{fmt(r.amount)}</td>
-                    <td className="px-3 sm:px-6 py-3 text-gray-600">{r.status === 'paid' ? 'Pago' : r.status === 'pending' ? 'Pendente' : r.status}</td>
+                    <td className="px-4 sm:px-6 py-3"><span className={`text-xs font-medium px-2 py-0.5 rounded-full ${r.type === 'income' ? 'bg-success-50 text-success-700' : 'bg-danger-50 text-danger-700'}`}>{r.type === 'income' ? 'Receita' : 'Despesa'}</span></td>
+                    <td className="px-4 sm:px-6 py-3">{r.description}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.due_date ? fmtDate(r.due_date) : '—'}</td>
+                    <td className={`px-4 sm:px-6 py-3 text-right font-medium ${r.type === 'income' ? 'text-success-600' : 'text-danger-600'}`}>{fmt(r.amount)}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.status === 'paid' ? 'Pago' : r.status === 'pending' ? 'Pendente' : r.status}</td>
                   </tr>))}</tbody></table>
               )}
               {activeReport === 'stock' && (
                 <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Produto</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Quantidade</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Mínimo</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Produto</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Quantidade</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Mínimo</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
                 </tr></thead><tbody>{data.map((r: any) => {
                   const isZero = r.quantity === 0; const isLow = !isZero && r.product && r.quantity <= (r.product.minimum_stock ?? 0)
                   return (
                     <tr key={r.id} className="border-b border-gray-50">
-                      <td className="px-3 sm:px-6 py-3 font-medium">{r.product?.name ?? '—'}</td>
-                      <td className={`px-3 sm:px-6 py-3 ${isZero ? 'text-danger-600' : isLow ? 'text-warning-600' : ''}`}>{r.quantity} {r.product?.unit ?? 'un'}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600">{r.product?.minimum_stock ?? 0}</td>
-                      <td className="px-3 sm:px-6 py-3"><span className={`text-xs font-medium px-2 py-0.5 rounded-full ${isZero ? 'bg-danger-50 text-danger-700' : isLow ? 'bg-warning-50 text-warning-700' : 'bg-success-50 text-success-700'}`}>{isZero ? 'Sem estoque' : isLow ? 'Baixo' : 'Normal'}</span></td>
+                      <td className="px-4 sm:px-6 py-3 font-medium">{r.product?.name ?? '—'}</td>
+                      <td className={`px-4 sm:px-6 py-3 ${isZero ? 'text-danger-600' : isLow ? 'text-warning-600' : ''}`}>{r.quantity} {r.product?.unit ?? 'un'}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600">{r.product?.minimum_stock ?? 0}</td>
+                      <td className="px-4 sm:px-6 py-3"><span className={`text-xs font-medium px-2 py-0.5 rounded-full ${isZero ? 'bg-danger-50 text-danger-700' : isLow ? 'bg-warning-50 text-warning-700' : 'bg-success-50 text-success-700'}`}>{isZero ? 'Sem estoque' : isLow ? 'Baixo' : 'Normal'}</span></td>
                     </tr>)})}</tbody></table>
               )}
               {activeReport === 'services' && (
                 <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Data</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Serviço</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Profissional</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Data</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Serviço</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Profissional</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
                 </tr></thead><tbody>{data.map((r: any) => (
                   <tr key={r.id} className="border-b border-gray-50">
-                    <td className="px-3 sm:px-6 py-3 text-gray-600">{fmtDate(r.date)}</td>
-                    <td className="px-3 sm:px-6 py-3">{r.service?.name ?? '—'}</td>
-                    <td className="px-3 sm:px-6 py-3 text-gray-600">{r.professional?.name ?? '—'}</td>
-                    <td className="px-3 sm:px-6 py-3 text-right font-medium">{r.price ? fmt(r.price) : '—'}</td>
-                    <td className="px-3 sm:px-6 py-3 text-gray-600">{r.status === 'completed' ? 'Concluído' : r.status === 'cancelled' ? 'Cancelado' : r.status === 'scheduled' ? 'Agendado' : r.status}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-600">{fmtDate(r.date)}</td>
+                    <td className="px-4 sm:px-6 py-3">{r.service?.name ?? '—'}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.professional?.name ?? '—'}</td>
+                    <td className="px-4 sm:px-6 py-3 text-right font-medium">{r.price ? fmt(r.price) : '—'}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.status === 'completed' ? 'Concluído' : r.status === 'cancelled' ? 'Cancelado' : r.status === 'scheduled' ? 'Agendado' : r.status}</td>
                   </tr>))}</tbody></table>
               )}
               {activeReport === 'customers' && (
                 <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Telefone</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">E-mail</th>
-                  <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Pets</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Telefone</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">E-mail</th>
+                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Pets</th>
                 </tr></thead><tbody>{data.map((r: any) => (
                   <tr key={r.id} className="border-b border-gray-50">
-                    <td className="px-3 sm:px-6 py-3 font-medium">{r.name}</td>
-                    <td className="px-3 sm:px-6 py-3 text-gray-600">{r.phone ?? '—'}</td>
-                    <td className="px-3 sm:px-6 py-3 text-gray-600">{r.email ?? '—'}</td>
-                    <td className="px-3 sm:px-6 py-3">{r.pets?.length ?? 0}</td>
+                    <td className="px-4 sm:px-6 py-3 font-medium">{r.name}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.phone ?? '—'}</td>
+                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.email ?? '—'}</td>
+                    <td className="px-4 sm:px-6 py-3">{r.pets?.length ?? 0}</td>
                   </tr>))}</tbody></table>
               )}
             </CardContent>

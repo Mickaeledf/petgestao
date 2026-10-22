@@ -5,19 +5,16 @@ import { Sidebar } from './Sidebar'
 
 export function MainLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Sidebar
         open={sidebarOpen}
-        collapsed={sidebarCollapsed}
         onClose={() => setSidebarOpen(false)}
-        onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
       />
-      <div className={`transition-all duration-300 ${sidebarCollapsed ? 'lg:ml-[72px]' : 'lg:ml-64'}`}>
+      <div className="lg:ml-64">
         <Header onMenuClick={() => setSidebarOpen(true)} />
-        <main className="p-4 lg:p-6">
+        <main className="p-5 sm:p-6 lg:p-8 max-w-[1440px]">
           <Outlet />
         </main>
       </div>

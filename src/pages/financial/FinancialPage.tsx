@@ -70,11 +70,11 @@ export function FinancialPage() {
       </div>
 
       <Card>
-        <div className="p-4 border-b border-gray-100 flex flex-col sm:flex-row gap-3">
-          <div className="relative flex-1">
+        <div className="p-5 border-b border-gray-100 flex flex-col sm:flex-row gap-3">
+          <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input type="text" placeholder="Buscar lançamento..." value={search} onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+              className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
           </div>
           <div className="flex gap-2">
             {(['all', 'pending', 'paid'] as const).map((f) => (
@@ -94,23 +94,23 @@ export function FinancialPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Tipo</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Descrição</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Categoria</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Vencimento</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th>
-                <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Tipo</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Descrição</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Categoria</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Vencimento</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th>
+                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
               </tr></thead><tbody>
                 {filtered.map((t) => {
                   const st = statusLabel[t.status] ?? { text: t.status, cls: 'bg-gray-100 text-gray-600' }
                   return (
                     <tr key={t.id} className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer" onClick={() => { setEditing(t); setShowForm(true) }}>
-                      <td className="px-3 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${t.type === 'income' ? 'bg-success-50 text-success-700' : 'bg-danger-50 text-danger-700'}`}>{t.type === 'income' ? 'Receita' : 'Despesa'}</span></td>
-                      <td className="px-3 sm:px-6 py-3 font-medium text-gray-900">{t.description}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600">{t.category ?? '—'}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600">{fmtDate(t.due_date)}</td>
-                      <td className={`px-3 sm:px-6 py-3 font-medium text-right ${t.type === 'income' ? 'text-success-600' : 'text-danger-600'}`}>{fmt(t.amount)}</td>
-                      <td className="px-3 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
+                      <td className="px-4 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${t.type === 'income' ? 'bg-success-50 text-success-700' : 'bg-danger-50 text-danger-700'}`}>{t.type === 'income' ? 'Receita' : 'Despesa'}</span></td>
+                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{t.description}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600">{t.category ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600">{fmtDate(t.due_date)}</td>
+                      <td className={`px-4 sm:px-6 py-3 font-medium text-right ${t.type === 'income' ? 'text-success-600' : 'text-danger-600'}`}>{fmt(t.amount)}</td>
+                      <td className="px-4 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
                     </tr>)
                 })}
               </tbody></table>

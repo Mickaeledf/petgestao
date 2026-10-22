@@ -49,11 +49,11 @@ export function ServicesPage() {
         }
       />
       <Card>
-        <div className="p-4 border-b border-gray-100">
-          <div className="relative">
+        <div className="p-5 border-b border-gray-100">
+          <div className="relative max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input type="text" placeholder="Buscar serviço..." value={search} onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+              className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
           </div>
         </div>
         <CardContent className="p-0">
@@ -69,22 +69,22 @@ export function ServicesPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">Descrição</th>
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right">Preço base</th>
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right hidden sm:table-cell">Duração</th>
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">Descrição</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Preço base</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right hidden sm:table-cell">Duração</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filtered.map((s) => (
                     <tr key={s.id} className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer"
                       onClick={() => { setEditingService(s); setShowForm(true) }}>
-                      <td className="px-3 sm:px-6 py-3 font-medium text-gray-900">{s.name}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600 max-w-xs truncate hidden sm:table-cell">{s.description ?? '—'}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-900 text-right">{fmt(s.base_price)}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600 text-right hidden sm:table-cell">{s.duration_minutes} min</td>
-                      <td className="px-3 sm:px-6 py-3">
+                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{s.name}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600 max-w-xs truncate hidden sm:table-cell">{s.description ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-900 text-right">{fmt(s.base_price)}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600 text-right hidden sm:table-cell">{s.duration_minutes} min</td>
+                      <td className="px-4 sm:px-6 py-3">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${s.active ? 'bg-success-50 text-success-700' : 'bg-gray-100 text-gray-600'}`}>
                           {s.active ? 'Ativo' : 'Inativo'}
                         </span>

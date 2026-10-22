@@ -68,8 +68,8 @@ export function ProductsPage() {
       />
 
       <Card>
-        <div className="p-4 border-b border-gray-100">
-          <div className="flex gap-2">
+        <div className="p-5 border-b border-gray-100">
+          <div className="flex gap-2 max-w-lg">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
               <input
@@ -77,12 +77,12 @@ export function ProductsPage() {
                 placeholder="Buscar por nome, código ou código de barras..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
             <button
               onClick={() => setShowScanner(true)}
-              className="flex items-center justify-center px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-600"
+              className="flex items-center justify-center px-3 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-600"
               title="Escanear código de barras"
             >
               <Camera className="w-4 h-4" />
@@ -95,46 +95,44 @@ export function ProductsPage() {
             <div className="flex items-center justify-center py-12">
               <div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" />
             </div>
-          ) : filtered.length === 0 ? (
+          ) : filtered.length === 0 && search ? (
             <EmptyState
               icon={Package}
-              title={search ? 'Nenhum produto encontrado' : 'Nenhum produto cadastrado'}
-              description={search ? 'Tente buscar com outros termos.' : 'Cadastre seu primeiro produto para começar.'}
-              actionLabel={!search ? 'Cadastrar produto' : undefined}
-              onAction={!search ? () => { setEditingProduct(null); setShowForm(true) } : undefined}
+              title="Nenhum produto encontrado"
+              description="Tente buscar com outros termos."
             />
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 hidden md:table-cell">Categoria</th>
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 hidden lg:table-cell">Código</th>
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right hidden sm:table-cell">Custo</th>
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right">Preço</th>
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500 text-right hidden md:table-cell">Estoque</th>
-                    <th className="px-3 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden md:table-cell">Categoria</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden lg:table-cell">Código</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right hidden sm:table-cell">Custo</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Preço</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right hidden md:table-cell">Estoque</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filtered.map((product) => (
+                  {filtered.length > 0 ? filtered.map((product) => (
                     <tr
                       key={product.id}
                       className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer"
                       onClick={() => { setEditingProduct(product); setShowForm(true) }}
                     >
-                      <td className="px-3 sm:px-6 py-3 font-medium text-gray-900">{product.name}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600 hidden md:table-cell">{product.category?.name ?? '—'}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-500 font-mono text-xs hidden lg:table-cell">{product.internal_code ?? '—'}</td>
-                      <td className="px-3 sm:px-6 py-3 text-gray-600 text-right hidden sm:table-cell">{formatCurrency(product.cost_price)}</td>
-                      <td className="px-3 sm:px-6 py-3 font-medium text-gray-900 text-right">{formatCurrency(product.sale_price)}</td>
-                      <td className="px-3 sm:px-6 py-3 text-right hidden md:table-cell">
+                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{product.name}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600 hidden md:table-cell">{product.category?.name ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-500 font-mono text-xs hidden lg:table-cell">{product.internal_code ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600 text-right hidden sm:table-cell">{formatCurrency(product.cost_price)}</td>
+                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900 text-right">{formatCurrency(product.sale_price)}</td>
+                      <td className="px-4 sm:px-6 py-3 text-right hidden md:table-cell">
                         <span className={product.minimum_stock > 0 && (product as Product & { stock_balance?: number }).stock_balance !== undefined ? 'text-danger-600' : 'text-gray-600'}>
                           —
                         </span>
                       </td>
-                      <td className="px-3 sm:px-6 py-3">
+                      <td className="px-4 sm:px-6 py-3">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                           product.active ? 'bg-success-50 text-success-700' : 'bg-gray-100 text-gray-600'
                         }`}>
@@ -142,9 +140,33 @@ export function ProductsPage() {
                         </span>
                       </td>
                     </tr>
+                  )) : [
+                    { name: 'Ração Premium Adulto 15kg', cat: 'Alimentação', code: 'RAC-001', cost: 89.90, price: 149.90, stock: 25 },
+                    { name: 'Shampoo Neutro Pet 500ml', cat: 'Higiene', code: 'HIG-012', cost: 12.50, price: 29.90, stock: 40 },
+                    { name: 'Coleira Antipulgas M', cat: 'Acessórios', code: 'COL-005', cost: 35.00, price: 69.90, stock: 15 },
+                    { name: 'Petisco Dental Cães', cat: 'Petiscos', code: 'PET-008', cost: 8.00, price: 18.90, stock: 60 },
+                    { name: 'Tapete Higiênico 30un', cat: 'Higiene', code: 'HIG-020', cost: 22.00, price: 45.90, stock: 30 },
+                  ].map((g, i) => (
+                    <tr key={i} className="border-b border-gray-50 opacity-40 pointer-events-none select-none">
+                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{g.name}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600 hidden md:table-cell">{g.cat}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-500 font-mono text-xs hidden lg:table-cell">{g.code}</td>
+                      <td className="px-4 sm:px-6 py-3 text-gray-600 text-right hidden sm:table-cell">{formatCurrency(g.cost)}</td>
+                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900 text-right">{formatCurrency(g.price)}</td>
+                      <td className="px-4 sm:px-6 py-3 text-right hidden md:table-cell">{g.stock}</td>
+                      <td className="px-4 sm:px-6 py-3">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-success-50 text-success-700">Ativo</span>
+                      </td>
+                    </tr>
                   ))}
                 </tbody>
               </table>
+              {filtered.length === 0 && (
+                <div className="text-center py-6 border-t border-gray-100">
+                  <p className="text-sm text-gray-500 mb-3">Os dados acima são exemplos. Cadastre seus produtos reais.</p>
+                  <Button onClick={() => { setEditingProduct(null); setShowForm(true) }}><Plus className="w-4 h-4" /> Cadastrar produto</Button>
+                </div>
+              )}
             </div>
           )}
         </CardContent>

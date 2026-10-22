@@ -327,9 +327,9 @@ export function PDVPage() {
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden max-w-[1600px] mx-auto w-full">
         {/* Left side - Search + Actions */}
-        <div className="lg:w-80 xl:w-96 bg-white border-b lg:border-b-0 lg:border-r border-gray-200 flex flex-col shrink-0">
+        <div className="lg:w-80 xl:w-[400px] bg-white border-b lg:border-b-0 lg:border-r border-gray-200 flex flex-col shrink-0">
           {/* Search input */}
           <div className="p-3 border-b border-gray-100">
             <div className="flex gap-2">
