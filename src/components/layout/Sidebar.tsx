@@ -23,45 +23,47 @@ import {
 } from 'lucide-react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
+import { usePermissions } from '@/hooks/usePermissions'
+import type { AppModule } from '@/types'
 
-const menuGroups = [
+const menuGroups: { label: string; items: { path: string; label: string; icon: typeof Home; module: AppModule }[] }[] = [
   {
     label: 'Principal',
     items: [
-      { path: '/', label: 'Dashboard', icon: Home },
-      { path: '/sales', label: 'Vendas', icon: ShoppingCart },
-      { path: '/pdv', label: 'PDV', icon: Monitor },
-      { path: '/cash-register', label: 'Caixa', icon: CreditCard },
+      { path: '/', label: 'Dashboard', icon: Home, module: 'dashboard' },
+      { path: '/sales', label: 'Vendas', icon: ShoppingCart, module: 'sales' },
+      { path: '/pdv', label: 'PDV', icon: Monitor, module: 'pdv' },
+      { path: '/cash-register', label: 'Caixa', icon: CreditCard, module: 'cash_register' },
     ],
   },
   {
     label: 'Cadastros',
     items: [
-      { path: '/customers', label: 'Tutores', icon: Users },
-      { path: '/pets', label: 'Animais', icon: Dog },
-      { path: '/products', label: 'Produtos', icon: Package },
-      { path: '/services', label: 'Serviços', icon: Scissors },
-      { path: '/professionals', label: 'Profissionais', icon: Users2 },
-      { path: '/suppliers', label: 'Fornecedores', icon: FileText },
+      { path: '/customers', label: 'Tutores', icon: Users, module: 'customers' },
+      { path: '/pets', label: 'Animais', icon: Dog, module: 'pets' },
+      { path: '/products', label: 'Produtos', icon: Package, module: 'products' },
+      { path: '/services', label: 'Serviços', icon: Scissors, module: 'services' },
+      { path: '/professionals', label: 'Profissionais', icon: Users2, module: 'professionals' },
+      { path: '/suppliers', label: 'Fornecedores', icon: FileText, module: 'suppliers' },
     ],
   },
   {
     label: 'Operacional',
     items: [
-      { path: '/schedule', label: 'Agenda', icon: Calendar },
-      { path: '/service-orders', label: 'Atendimentos', icon: Clipboard },
-      { path: '/stock', label: 'Estoque', icon: Box },
-      { path: '/purchases', label: 'Compras', icon: Truck },
+      { path: '/schedule', label: 'Agenda', icon: Calendar, module: 'schedule' },
+      { path: '/service-orders', label: 'Atendimentos', icon: Clipboard, module: 'service_orders' },
+      { path: '/stock', label: 'Estoque', icon: Box, module: 'stock' },
+      { path: '/purchases', label: 'Compras', icon: Truck, module: 'purchases' },
     ],
   },
   {
     label: 'Gestão',
     items: [
-      { path: '/financial', label: 'Financeiro', icon: DollarSign },
-      { path: '/reports', label: 'Relatórios', icon: BarChart3 },
-      { path: '/users', label: 'Usuários', icon: UserCog },
-      { path: '/settings', label: 'Configurações', icon: Settings },
-      { path: '/license', label: 'Licença', icon: Key },
+      { path: '/financial', label: 'Financeiro', icon: DollarSign, module: 'financial' },
+      { path: '/reports', label: 'Relatórios', icon: BarChart3, module: 'reports' },
+      { path: '/users', label: 'Usuários', icon: UserCog, module: 'users' },
+      { path: '/settings', label: 'Configurações', icon: Settings, module: 'settings' },
+      { path: '/license', label: 'Licença', icon: Key, module: 'license' },
     ],
   },
 ]
@@ -73,6 +75,7 @@ interface SidebarProps {
 
 export function Sidebar({ open, onClose }: SidebarProps) {
   const location = useLocation()
+  const { canView, loading: permLoading } = usePermissions()
 
   const prevPath = useRef(location.pathname)
   useEffect(() => {
@@ -81,6 +84,13 @@ export function Sidebar({ open, onClose }: SidebarProps) {
       onClose()
     }
   }, [location.pathname, onClose])
+
+  const filteredGroups = menuGroups
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((item) => permLoading || canView(item.module)),
+    }))
+    .filter((group) => group.items.length > 0)
 
   return (
     <>
@@ -112,7 +122,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         </div>
 
         <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-4">
-          {menuGroups.map((group) => (
+          {filteredGroups.map((group) => (
             <div key={group.label}>
               <p className="px-3 mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-sidebar-text/40">
                 {group.label}

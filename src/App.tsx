@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AuthProvider, useAuth } from '@/contexts/AuthContext'
 import { MainLayout } from '@/components/layout/MainLayout'
+import { RequirePermission } from '@/components/auth/RequirePermission'
 import { LoginPage } from '@/pages/auth/LoginPage'
 import { RegisterPage } from '@/pages/auth/RegisterPage'
 import { ForgotPasswordPage } from '@/pages/auth/ForgotPasswordPage'
@@ -24,6 +25,7 @@ import { UsersPage } from '@/pages/users/UsersPage'
 import { SettingsPage } from '@/pages/settings/SettingsPage'
 import { LicensePage } from '@/pages/license/LicensePage'
 import { OnboardingPage } from '@/pages/onboarding/OnboardingPage'
+import { AccessDeniedPage } from '@/pages/auth/AccessDeniedPage'
 import type { ReactNode } from 'react'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
@@ -66,6 +68,8 @@ function PublicRoute({ children }: { children: ReactNode }) {
   return <>{children}</>
 }
 
+const denied = <AccessDeniedPage />
+
 function AppRoutes() {
   return (
     <Routes>
@@ -73,26 +77,26 @@ function AppRoutes() {
       <Route path="/auth/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
       <Route path="/auth/forgot-password" element={<PublicRoute><ForgotPasswordPage /></PublicRoute>} />
 
-      <Route path="/pdv" element={<ProtectedRoute><PDVPage /></ProtectedRoute>} />
+      <Route path="/pdv" element={<ProtectedRoute><RequirePermission module="pdv" fallback={denied}><PDVPage /></RequirePermission></ProtectedRoute>} />
       <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
-        <Route index element={<DashboardPage />} />
-        <Route path="products" element={<ProductsPage />} />
-        <Route path="stock" element={<StockPage />} />
-        <Route path="customers" element={<CustomersPage />} />
-        <Route path="pets" element={<PetsPage />} />
-        <Route path="services" element={<ServicesPage />} />
-        <Route path="professionals" element={<ProfessionalsPage />} />
-        <Route path="schedule" element={<SchedulePage />} />
-        <Route path="service-orders" element={<ServiceOrdersPage />} />
-        <Route path="sales" element={<SalesPage />} />
-        <Route path="cash-register" element={<CashRegisterPage />} />
-        <Route path="financial" element={<FinancialPage />} />
-        <Route path="purchases" element={<PurchasesPage />} />
-        <Route path="suppliers" element={<SuppliersPage />} />
-        <Route path="reports" element={<ReportsPage />} />
-        <Route path="users" element={<UsersPage />} />
-        <Route path="settings" element={<SettingsPage />} />
-        <Route path="license" element={<LicensePage />} />
+        <Route index element={<RequirePermission module="dashboard" fallback={denied}><DashboardPage /></RequirePermission>} />
+        <Route path="products" element={<RequirePermission module="products" fallback={denied}><ProductsPage /></RequirePermission>} />
+        <Route path="stock" element={<RequirePermission module="stock" fallback={denied}><StockPage /></RequirePermission>} />
+        <Route path="customers" element={<RequirePermission module="customers" fallback={denied}><CustomersPage /></RequirePermission>} />
+        <Route path="pets" element={<RequirePermission module="pets" fallback={denied}><PetsPage /></RequirePermission>} />
+        <Route path="services" element={<RequirePermission module="services" fallback={denied}><ServicesPage /></RequirePermission>} />
+        <Route path="professionals" element={<RequirePermission module="professionals" fallback={denied}><ProfessionalsPage /></RequirePermission>} />
+        <Route path="schedule" element={<RequirePermission module="schedule" fallback={denied}><SchedulePage /></RequirePermission>} />
+        <Route path="service-orders" element={<RequirePermission module="service_orders" fallback={denied}><ServiceOrdersPage /></RequirePermission>} />
+        <Route path="sales" element={<RequirePermission module="sales" fallback={denied}><SalesPage /></RequirePermission>} />
+        <Route path="cash-register" element={<RequirePermission module="cash_register" fallback={denied}><CashRegisterPage /></RequirePermission>} />
+        <Route path="financial" element={<RequirePermission module="financial" fallback={denied}><FinancialPage /></RequirePermission>} />
+        <Route path="purchases" element={<RequirePermission module="purchases" fallback={denied}><PurchasesPage /></RequirePermission>} />
+        <Route path="suppliers" element={<RequirePermission module="suppliers" fallback={denied}><SuppliersPage /></RequirePermission>} />
+        <Route path="reports" element={<RequirePermission module="reports" fallback={denied}><ReportsPage /></RequirePermission>} />
+        <Route path="users" element={<RequirePermission module="users" fallback={denied}><UsersPage /></RequirePermission>} />
+        <Route path="settings" element={<RequirePermission module="settings" fallback={denied}><SettingsPage /></RequirePermission>} />
+        <Route path="license" element={<RequirePermission module="license" fallback={denied}><LicensePage /></RequirePermission>} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />

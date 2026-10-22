@@ -30,9 +30,38 @@ export interface Role {
   name: string
   description: string | null
   is_system: boolean
+  is_owner: boolean
   created_at: string
-  permissions?: Permission[]
+  role_permissions?: RolePermission[]
 }
+
+export interface RolePermission {
+  id: string
+  role_id: string
+  module: string
+  can_view: boolean
+  can_create: boolean
+  can_edit: boolean
+  can_delete: boolean
+}
+
+export interface MemberPermissionOverride {
+  id: string
+  membership_id: string
+  module: string
+  can_view: boolean | null
+  can_create: boolean | null
+  can_edit: boolean | null
+  can_delete: boolean | null
+}
+
+export type PermissionAction = 'view' | 'create' | 'edit' | 'delete'
+
+export type AppModule =
+  | 'dashboard' | 'sales' | 'pdv' | 'cash_register'
+  | 'customers' | 'pets' | 'products' | 'services' | 'professionals' | 'suppliers'
+  | 'schedule' | 'service_orders' | 'stock' | 'purchases'
+  | 'financial' | 'reports' | 'users' | 'settings' | 'license'
 
 export interface Permission {
   id: string
