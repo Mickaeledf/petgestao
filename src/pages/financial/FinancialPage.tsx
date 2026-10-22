@@ -63,7 +63,7 @@ export function FinancialPage() {
       <PageHeader title="Financeiro" description="Contas a pagar, receber e lançamentos"
         actions={<Button onClick={() => { setEditing(null); setShowForm(true) }}><Plus className="w-4 h-4" /> Novo lançamento</Button>} />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Receitas (pagas)</p><p className="text-xl font-bold text-success-600">{fmt(totalIncome)}</p></CardContent></Card>
         <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Despesas (pagas)</p><p className="text-xl font-bold text-danger-600">{fmt(totalExpense)}</p></CardContent></Card>
         <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Saldo</p><p className={`text-xl font-bold ${totalIncome - totalExpense >= 0 ? 'text-success-600' : 'text-danger-600'}`}>{fmt(totalIncome - totalExpense)}</p></CardContent></Card>
@@ -94,23 +94,23 @@ export function FinancialPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Tipo</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Descrição</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Categoria</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Vencimento</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Tipo</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Descrição</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Categoria</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Vencimento</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-right">Valor</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
               </tr></thead><tbody>
                 {filtered.map((t) => {
                   const st = statusLabel[t.status] ?? { text: t.status, cls: 'bg-gray-100 text-gray-600' }
                   return (
                     <tr key={t.id} className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer" onClick={() => { setEditing(t); setShowForm(true) }}>
-                      <td className="px-4 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${t.type === 'income' ? 'bg-success-50 text-success-700' : 'bg-danger-50 text-danger-700'}`}>{t.type === 'income' ? 'Receita' : 'Despesa'}</span></td>
-                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{t.description}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600">{t.category ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600">{fmtDate(t.due_date)}</td>
-                      <td className={`px-4 sm:px-6 py-3 font-medium text-right ${t.type === 'income' ? 'text-success-600' : 'text-danger-600'}`}>{fmt(t.amount)}</td>
-                      <td className="px-4 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
+                      <td className="px-4 sm:px-6 py-4"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${t.type === 'income' ? 'bg-success-50 text-success-700' : 'bg-danger-50 text-danger-700'}`}>{t.type === 'income' ? 'Receita' : 'Despesa'}</span></td>
+                      <td className="px-4 sm:px-6 py-4 font-medium text-gray-900">{t.description}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600">{t.category ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600 whitespace-nowrap">{fmtDate(t.due_date)}</td>
+                      <td className={`px-4 sm:px-6 py-4 font-medium text-right whitespace-nowrap ${t.type === 'income' ? 'text-success-600' : 'text-danger-600'}`}>{fmt(t.amount)}</td>
+                      <td className="px-4 sm:px-6 py-4"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
                     </tr>)
                 })}
               </tbody></table>

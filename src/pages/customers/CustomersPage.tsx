@@ -80,10 +80,10 @@ export function CustomersPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Telefone</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">E-mail</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Nome</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Telefone</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap hidden sm:table-cell">E-mail</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -93,10 +93,10 @@ export function CustomersPage() {
                       className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer"
                       onClick={() => { setEditingCustomer(customer); setShowForm(true) }}
                     >
-                      <td className="px-4 sm:px-6 py-3.5 font-medium text-gray-900">{customer.name}</td>
-                      <td className="px-4 sm:px-6 py-3.5 text-gray-600">{customer.phone ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-3.5 text-gray-600 hidden sm:table-cell">{customer.email ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-3.5">
+                      <td className="px-4 sm:px-6 py-4 font-medium text-gray-900">{customer.name}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600">{customer.phone ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600 hidden sm:table-cell">{customer.email ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-4">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                           customer.status === 'active' ? 'bg-success-50 text-success-700' : 'bg-gray-100 text-gray-600'
                         }`}>

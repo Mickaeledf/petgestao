@@ -98,7 +98,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
       >
         <div className="flex items-center justify-between h-16 px-4 border-b border-white/10">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+            <div className="w-9 h-9 bg-gradient-to-br from-indigo-400 to-violet-600 rounded-xl flex items-center justify-center shadow-lg">
               <PawPrint className="w-5 h-5 text-white" />
             </div>
             <span className="text-lg font-bold text-white tracking-tight">PetGestão</span>
@@ -126,7 +126,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
                     className={({ isActive }) =>
                       `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
                         isActive
-                          ? 'bg-gradient-to-r from-emerald-500/20 to-teal-500/10 text-emerald-400 font-medium border-l-2 border-emerald-400'
+                          ? 'bg-gradient-to-r from-indigo-500/20 to-violet-500/10 text-indigo-300 font-medium border-l-2 border-indigo-400'
                           : 'text-sidebar-text hover:bg-white/5 hover:text-white'
                       }`
                     }

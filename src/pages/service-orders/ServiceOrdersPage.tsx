@@ -81,25 +81,25 @@ export function ServiceOrdersPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">#</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Cliente</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Pet</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden md:table-cell">Profissional</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">Data</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Total</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap hidden sm:table-cell">#</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Cliente</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Pet</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap hidden md:table-cell">Profissional</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap hidden sm:table-cell">Data</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-right">Total</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
               </tr></thead><tbody>
                 {filtered.length > 0 ? filtered.map((o) => {
                   const st = statusLabel[o.status] ?? { text: o.status, cls: 'bg-gray-100 text-gray-600' }
                   return (
                     <tr key={o.id} className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer" onClick={() => { setEditing(o); setShowForm(true) }}>
-                      <td className="px-4 sm:px-6 py-3 font-mono text-gray-900 hidden sm:table-cell">{o.order_number}</td>
-                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{o.customer?.name ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600">{o.pet?.name ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600 hidden md:table-cell">{o.professional?.name ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600 hidden sm:table-cell">{fmtDate(o.created_at)}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-900 text-right">{o.total ? fmt(o.total) : '—'}</td>
-                      <td className="px-4 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
+                      <td className="px-4 sm:px-6 py-4 font-mono text-gray-900 hidden sm:table-cell">{o.order_number}</td>
+                      <td className="px-4 sm:px-6 py-4 font-medium text-gray-900">{o.customer?.name ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600">{o.pet?.name ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600 hidden md:table-cell">{o.professional?.name ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600 whitespace-nowrap hidden sm:table-cell">{fmtDate(o.created_at)}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-900 text-right whitespace-nowrap">{o.total ? fmt(o.total) : '—'}</td>
+                      <td className="px-4 sm:px-6 py-4"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
                     </tr>)
                 }) : [
                   { num: 1001, client: 'Ana Costa', pet: 'Thor', prof: 'Maria Silva', date: '21/10/2026, 08:30', total: 'R$ 85,00', st: { text: 'Em andamento', cls: 'bg-primary-50 text-primary-700' } },
@@ -108,13 +108,13 @@ export function ServiceOrdersPage() {
                   { num: 1004, client: 'Pedro Souza', pet: 'Mel', prof: 'Maria Silva', date: '20/10/2026, 16:00', total: 'R$ 95,00', st: { text: 'Entregue', cls: 'bg-gray-100 text-gray-800' } },
                 ].map((g, i) => (
                   <tr key={i} className="border-b border-gray-50 opacity-40 pointer-events-none select-none">
-                    <td className="px-4 sm:px-6 py-3 font-mono text-gray-900 hidden sm:table-cell">{g.num}</td>
-                    <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{g.client}</td>
-                    <td className="px-4 sm:px-6 py-3 text-gray-600">{g.pet}</td>
-                    <td className="px-4 sm:px-6 py-3 text-gray-600 hidden md:table-cell">{g.prof}</td>
-                    <td className="px-4 sm:px-6 py-3 text-gray-600 hidden sm:table-cell">{g.date}</td>
-                    <td className="px-4 sm:px-6 py-3 text-gray-900 text-right">{g.total}</td>
-                    <td className="px-4 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${g.st.cls}`}>{g.st.text}</span></td>
+                    <td className="px-4 sm:px-6 py-4 font-mono text-gray-900 hidden sm:table-cell">{g.num}</td>
+                    <td className="px-4 sm:px-6 py-4 font-medium text-gray-900">{g.client}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-600">{g.pet}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-600 hidden md:table-cell">{g.prof}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-600 whitespace-nowrap hidden sm:table-cell">{g.date}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-900 text-right whitespace-nowrap">{g.total}</td>
+                    <td className="px-4 sm:px-6 py-4"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${g.st.cls}`}>{g.st.text}</span></td>
                   </tr>
                 ))}
               </tbody></table>

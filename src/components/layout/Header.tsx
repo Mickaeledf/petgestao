@@ -60,7 +60,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                       setShowEstablishments(false)
                     }}
                     className={`w-full text-left px-4 py-3 text-sm hover:bg-gray-50 first:rounded-t-xl last:rounded-b-xl ${
-                      m.establishment_id === currentEstablishment?.id ? 'bg-emerald-50 text-emerald-700' : ''
+                      m.establishment_id === currentEstablishment?.id ? 'bg-primary-50 text-primary-700' : ''
                     }`}
                   >
                     {m.establishment?.name ?? m.establishment_id}
@@ -84,7 +84,7 @@ export function Header({ onMenuClick }: HeaderProps) {
           onClick={() => setShowUserMenu(!showUserMenu)}
           className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-gray-100"
         >
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center">
+          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-400 to-violet-600 flex items-center justify-center">
             <User className="w-4 h-4 text-white" />
           </div>
           <span className="text-sm text-gray-700 hidden sm:inline truncate max-w-[120px]">

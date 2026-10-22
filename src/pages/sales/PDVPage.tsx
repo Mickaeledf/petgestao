@@ -327,11 +327,11 @@ export function PDVPage() {
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden max-w-[1600px] mx-auto w-full">
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
         {/* Left side - Search + Actions */}
-        <div className="lg:w-80 xl:w-[400px] bg-white border-b lg:border-b-0 lg:border-r border-gray-200 flex flex-col shrink-0">
+        <div className="lg:w-96 xl:w-[420px] bg-white border-b lg:border-b-0 lg:border-r border-gray-200 flex flex-col shrink-0">
           {/* Search input */}
-          <div className="p-4 border-b border-gray-100">
+          <div className="p-5 border-b border-gray-100">
             <div className="flex gap-2">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -372,41 +372,41 @@ export function PDVPage() {
           </div>
 
           {/* Action buttons */}
-          <div className="p-4 grid grid-cols-3 gap-2.5">
+          <div className="p-5 grid grid-cols-3 gap-3">
             <button onClick={handleCancel}
-              className="flex flex-col items-center gap-1 py-3 px-2 rounded-xl border border-gray-200 hover:bg-danger-50 hover:border-danger-300 hover:text-danger-700 text-gray-600 transition-colors text-xs font-medium">
+              className="flex flex-col items-center gap-1.5 py-3.5 px-2 rounded-xl border border-gray-200 hover:bg-danger-50 hover:border-danger-300 hover:text-danger-700 text-gray-600 transition-colors text-xs font-medium">
               <XCircle className="w-5 h-5" />
               Cancelar
             </button>
             <button onClick={() => setShowDiscount(true)}
-              className="flex flex-col items-center gap-1 py-3 px-2 rounded-xl border border-gray-200 hover:bg-warning-50 hover:border-warning-300 hover:text-warning-700 text-gray-600 transition-colors text-xs font-medium">
+              className="flex flex-col items-center gap-1.5 py-3.5 px-2 rounded-xl border border-gray-200 hover:bg-warning-50 hover:border-warning-300 hover:text-warning-700 text-gray-600 transition-colors text-xs font-medium">
               <Percent className="w-5 h-5" />
               Desconto
             </button>
             <button onClick={() => setShowServices(true)}
-              className="flex flex-col items-center gap-1 py-3 px-2 rounded-xl border border-gray-200 hover:bg-primary-50 hover:border-primary-300 hover:text-primary-700 text-gray-600 transition-colors text-xs font-medium">
+              className="flex flex-col items-center gap-1.5 py-3.5 px-2 rounded-xl border border-gray-200 hover:bg-primary-50 hover:border-primary-300 hover:text-primary-700 text-gray-600 transition-colors text-xs font-medium">
               <Scissors className="w-5 h-5" />
               Serviços
             </button>
             <button onClick={() => setShowCustomers(true)}
-              className="flex flex-col items-center gap-1 py-3 px-2 rounded-xl border border-gray-200 hover:bg-primary-50 hover:border-primary-300 hover:text-primary-700 text-gray-600 transition-colors text-xs font-medium">
+              className="flex flex-col items-center gap-1.5 py-3.5 px-2 rounded-xl border border-gray-200 hover:bg-primary-50 hover:border-primary-300 hover:text-primary-700 text-gray-600 transition-colors text-xs font-medium">
               <Users className="w-5 h-5" />
               Cliente
             </button>
             <button onClick={() => { setShowProducts(true); setSearch('') }}
-              className="flex flex-col items-center gap-1 py-3 px-2 rounded-xl border border-gray-200 hover:bg-primary-50 hover:border-primary-300 hover:text-primary-700 text-gray-600 transition-colors text-xs font-medium">
+              className="flex flex-col items-center gap-1.5 py-3.5 px-2 rounded-xl border border-gray-200 hover:bg-primary-50 hover:border-primary-300 hover:text-primary-700 text-gray-600 transition-colors text-xs font-medium">
               <Search className="w-5 h-5" />
               Produtos
             </button>
             <button onClick={() => setShowPayment(true)} disabled={cart.length === 0}
-              className="flex flex-col items-center gap-1 py-3 px-2 rounded-xl border-2 border-primary-500 bg-primary-50 text-primary-700 hover:bg-primary-100 transition-colors text-xs font-bold disabled:opacity-40 disabled:cursor-not-allowed">
+              className="flex flex-col items-center gap-1.5 py-3.5 px-2 rounded-xl border-2 border-primary-500 bg-primary-50 text-primary-700 hover:bg-primary-100 transition-colors text-xs font-bold disabled:opacity-40 disabled:cursor-not-allowed">
               <DollarSign className="w-5 h-5" />
               Concluir
             </button>
           </div>
 
           {/* Summary on mobile */}
-          <div className="lg:hidden p-4 border-t border-gray-100 bg-gray-50">
+          <div className="lg:hidden p-5 border-t border-gray-100 bg-gray-50">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-gray-500">{itemCount} {itemCount === 1 ? 'item' : 'itens'}</p>

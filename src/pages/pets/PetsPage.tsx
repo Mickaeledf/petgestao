@@ -88,12 +88,12 @@ export function PetsPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Tutor</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">Espécie</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden md:table-cell">Raça</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden md:table-cell">Porte</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Nome</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Tutor</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap hidden sm:table-cell">Espécie</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap hidden md:table-cell">Raça</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap hidden md:table-cell">Porte</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -103,12 +103,12 @@ export function PetsPage() {
                       className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer"
                       onClick={() => { setEditingPet(pet); setShowForm(true) }}
                     >
-                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{pet.name}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600">{pet.customer?.name ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600 hidden sm:table-cell">{pet.species}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600 hidden md:table-cell">{pet.breed ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600 hidden md:table-cell">{pet.size ? sizeLabels[pet.size] ?? pet.size : '—'}</td>
-                      <td className="px-4 sm:px-6 py-3">
+                      <td className="px-4 sm:px-6 py-4 font-medium text-gray-900">{pet.name}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600">{pet.customer?.name ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600 hidden sm:table-cell">{pet.species}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600 hidden md:table-cell">{pet.breed ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600 hidden md:table-cell">{pet.size ? sizeLabels[pet.size] ?? pet.size : '—'}</td>
+                      <td className="px-4 sm:px-6 py-4">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                           pet.status === 'active' ? 'bg-success-50 text-success-700' : 'bg-gray-100 text-gray-600'
                         }`}>

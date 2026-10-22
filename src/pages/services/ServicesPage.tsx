@@ -69,22 +69,22 @@ export function ServicesPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">Descrição</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Preço base</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right hidden sm:table-cell">Duração</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Nome</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap hidden sm:table-cell">Descrição</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-right">Preço base</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-right hidden sm:table-cell">Duração</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filtered.map((s) => (
                     <tr key={s.id} className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer"
                       onClick={() => { setEditingService(s); setShowForm(true) }}>
-                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{s.name}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600 max-w-xs truncate hidden sm:table-cell">{s.description ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-900 text-right">{fmt(s.base_price)}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600 text-right hidden sm:table-cell">{s.duration_minutes} min</td>
-                      <td className="px-4 sm:px-6 py-3">
+                      <td className="px-4 sm:px-6 py-4 font-medium text-gray-900">{s.name}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600 max-w-xs truncate hidden sm:table-cell">{s.description ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-900 text-right">{fmt(s.base_price)}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600 text-right hidden sm:table-cell">{s.duration_minutes} min</td>
+                      <td className="px-4 sm:px-6 py-4">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${s.active ? 'bg-success-50 text-success-700' : 'bg-gray-100 text-gray-600'}`}>
                           {s.active ? 'Ativo' : 'Inativo'}
                         </span>

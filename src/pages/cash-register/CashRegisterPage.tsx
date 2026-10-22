@@ -135,13 +135,13 @@ export function CashRegisterPage() {
           <Button onClick={openRegister} loading={actionLoading}><Unlock className="w-4 h-4" /> Abrir caixa</Button>
         </CardContent></Card>
       ) : (
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Saldo inicial</p><p className="text-xl font-bold text-gray-900">{fmt(currentRegister.opening_balance)}</p></CardContent></Card>
             <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Entradas</p><p className="text-xl font-bold text-success-600">{fmt(movements.filter((m) => m.amount > 0 && m.movement_type !== 'opening').reduce((s, m) => s + m.amount, 0))}</p></CardContent></Card>
             <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Saídas</p><p className="text-xl font-bold text-danger-600">{fmt(Math.abs(movements.filter((m) => m.amount < 0).reduce((s, m) => s + m.amount, 0)))}</p></CardContent></Card>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card><CardHeader><h3 className="font-semibold text-gray-900">Retirada</h3></CardHeader>
               <CardContent className="space-y-3"><Input label="Valor" type="number" step="0.01" min="0" value={withdrawAmount} onChange={(e) => setWithdrawAmount(e.target.value)} />
                 <Input label="Descrição" value={withdrawDesc} onChange={(e) => setWithdrawDesc(e.target.value)} />
@@ -155,14 +155,14 @@ export function CashRegisterPage() {
             <CardContent className="p-0">
               {movements.length === 0 ? <p className="text-center text-gray-400 py-6 text-sm">Nenhuma movimentação</p> : (
                 <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Tipo</th><th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Descrição</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th><th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Hora</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Tipo</th><th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Descrição</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-right">Valor</th><th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Hora</th>
                 </tr></thead><tbody>{movements.map((m) => (
                   <tr key={m.id} className="border-b border-gray-50">
-                    <td className="px-4 sm:px-6 py-3 text-gray-600">{movTypeLabel[m.movement_type] ?? m.movement_type}</td>
-                    <td className="px-4 sm:px-6 py-3 text-gray-600">{m.description ?? '—'}</td>
-                    <td className={`px-4 sm:px-6 py-3 font-medium text-right ${m.amount >= 0 ? 'text-success-600' : 'text-danger-600'}`}>{m.amount >= 0 ? '+' : ''}{fmt(m.amount)}</td>
-                    <td className="px-4 sm:px-6 py-3 text-gray-500 text-xs">{fmtDate(m.created_at)}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-600">{movTypeLabel[m.movement_type] ?? m.movement_type}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-600">{m.description ?? '—'}</td>
+                    <td className={`px-4 sm:px-6 py-4 font-medium text-right whitespace-nowrap ${m.amount >= 0 ? 'text-success-600' : 'text-danger-600'}`}>{m.amount >= 0 ? '+' : ''}{fmt(m.amount)}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-500 text-xs whitespace-nowrap">{fmtDate(m.created_at)}</td>
                   </tr>))}</tbody></table>)}
             </CardContent></Card>
           <Card><CardContent className="p-4 flex items-center gap-4">

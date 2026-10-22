@@ -160,14 +160,14 @@ export function UsersPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Usuário</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Cargo</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Ações</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Usuário</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Cargo</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Ações</th>
               </tr></thead><tbody>
                 {filtered.map((m) => (
                   <tr key={m.id} className="border-b border-gray-50">
-                    <td className="px-4 sm:px-6 py-3">
+                    <td className="px-4 sm:px-6 py-4">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center">
                           <span className="text-xs font-medium text-primary-700">{(m.user_email ?? m.user_id).charAt(0).toUpperCase()}</span>
@@ -175,18 +175,18 @@ export function UsersPage() {
                         <span className="font-medium text-gray-900">{m.user_email ?? m.user_id}</span>
                       </div>
                     </td>
-                    <td className="px-4 sm:px-6 py-3">
+                    <td className="px-4 sm:px-6 py-4">
                       <select value={m.role_id ?? ''} onChange={(e) => handleUpdateRole(m.id, e.target.value)}
                         className="px-2 py-1 border border-gray-200 rounded text-sm">
                         {roles.map((r) => <option key={r.id} value={r.id}>{roleLabel[r.name] ?? r.name}</option>)}
                       </select>
                     </td>
-                    <td className="px-4 sm:px-6 py-3">
+                    <td className="px-4 sm:px-6 py-4">
                       <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${m.is_active ? 'bg-success-50 text-success-700' : 'bg-gray-100 text-gray-600'}`}>
                         {m.is_active ? 'Ativo' : 'Inativo'}
                       </span>
                     </td>
-                    <td className="px-4 sm:px-6 py-3">
+                    <td className="px-4 sm:px-6 py-4">
                       {m.user_id !== user?.id && (
                         <button onClick={() => handleToggleActive(m.id, m.is_active)}
                           className="text-xs text-gray-500 hover:text-gray-700 underline">
@@ -206,15 +206,15 @@ export function UsersPage() {
         <CardHeader><h3 className="font-semibold text-gray-900 flex items-center gap-2"><Shield className="w-5 h-5" /> Cargos do sistema</h3></CardHeader>
         <CardContent className="p-0">
           <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-            <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Cargo</th>
-            <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Descrição</th>
-            <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Tipo</th>
+            <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Cargo</th>
+            <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Descrição</th>
+            <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Tipo</th>
           </tr></thead><tbody>
             {roles.map((r) => (
               <tr key={r.id} className="border-b border-gray-50">
-                <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{roleLabel[r.name] ?? r.name}</td>
-                <td className="px-4 sm:px-6 py-3 text-gray-600">{r.description ?? '—'}</td>
-                <td className="px-4 sm:px-6 py-3"><span className={`text-xs font-medium px-2 py-0.5 rounded-full ${r.is_system ? 'bg-primary-50 text-primary-700' : 'bg-gray-100 text-gray-700'}`}>{r.is_system ? 'Sistema' : 'Personalizado'}</span></td>
+                <td className="px-4 sm:px-6 py-4 font-medium text-gray-900">{roleLabel[r.name] ?? r.name}</td>
+                <td className="px-4 sm:px-6 py-4 text-gray-600">{r.description ?? '—'}</td>
+                <td className="px-4 sm:px-6 py-4"><span className={`text-xs font-medium px-2 py-0.5 rounded-full ${r.is_system ? 'bg-primary-50 text-primary-700' : 'bg-gray-100 text-gray-700'}`}>{r.is_system ? 'Sistema' : 'Personalizado'}</span></td>
               </tr>
             ))}
           </tbody></table>

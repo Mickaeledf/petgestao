@@ -28,10 +28,10 @@ interface StatCardProps {
 function StatCard({ label, value, icon, trend, color }: StatCardProps) {
   return (
     <Card>
-      <CardContent className="flex items-center justify-between gap-4 p-5">
+      <CardContent className="flex items-center justify-between gap-4" style={{ padding: '1.5rem' }}>
         <div className="min-w-0">
-          <p className="text-sm text-gray-500 mb-1">{label}</p>
-          <p className="text-xl sm:text-2xl font-bold text-gray-900 truncate">{value}</p>
+          <p className="text-sm text-gray-500 mb-1.5">{label}</p>
+          <p className="text-2xl font-bold text-gray-900 truncate">{value}</p>
           {trend && (
             <div className={`flex items-center gap-1 mt-2 text-sm ${trend.positive ? 'text-success-600' : 'text-danger-600'}`}>
               {trend.positive ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />}
@@ -130,22 +130,22 @@ export function DashboardPage() {
     <div>
       <PageHeader title="Dashboard" description={`Visão geral de ${currentEstablishment.name}`} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
         <StatCard label="Vendas hoje" value={fmt(salesToday)}
           icon={<DollarSign className="w-6 h-6 text-primary-600" />} color="bg-primary-100" />
         <StatCard label="Qtd. vendas" value={String(salesCount)}
           icon={<ShoppingCart className="w-6 h-6 text-success-600" />} color="bg-success-50" />
         <StatCard label="Agendamentos hoje" value={String(appointmentsToday)}
-          icon={<Scissors className="w-6 h-6 text-purple-600" />} color="bg-purple-100" />
+          icon={<Scissors className="w-6 h-6 text-violet-600" />} color="bg-violet-100" />
         <StatCard label="Ticket médio" value={fmt(ticketMedio)}
-          icon={<TrendingUp className="w-6 h-6 text-warning-600" />} color="bg-warning-50" />
+          icon={<TrendingUp className="w-6 h-6 text-amber-600" />} color="bg-amber-50" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
         <StatCard label="Clientes ativos" value={String(totalCustomers)}
           icon={<Users className="w-6 h-6 text-blue-600" />} color="bg-blue-50" />
         <StatCard label="Pets cadastrados" value={String(totalPets)}
-          icon={<PawPrint className="w-6 h-6 text-amber-600" />} color="bg-amber-50" />
+          icon={<PawPrint className="w-6 h-6 text-orange-600" />} color="bg-orange-50" />
         <StatCard label="Contas a pagar" value={fmt(pendingFinancial)}
           icon={<DollarSign className="w-6 h-6 text-danger-600" />} color="bg-danger-50"
           trend={pendingFinancial > 0 ? { value: 'Pendente', positive: false } : undefined} />

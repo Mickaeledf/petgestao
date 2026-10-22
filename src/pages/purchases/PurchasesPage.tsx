@@ -79,23 +79,23 @@ export function PurchasesPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">#</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Fornecedor</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden sm:table-cell">Data</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden md:table-cell">Previsão</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Total</th>
-                <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap hidden sm:table-cell">#</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Fornecedor</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap hidden sm:table-cell">Data</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap hidden md:table-cell">Previsão</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-right">Total</th>
+                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
               </tr></thead><tbody>
                 {filtered.map((p) => {
                   const st = statusLabel[p.status] ?? { text: p.status, cls: 'bg-gray-100 text-gray-600' }
                   return (
                     <tr key={p.id} className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer" onClick={() => { setEditing(p); setShowForm(true) }}>
-                      <td className="px-4 sm:px-6 py-3 font-mono text-gray-900 hidden sm:table-cell">{p.purchase_number}</td>
-                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{p.supplier?.name ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600 hidden sm:table-cell">{fmtDate(p.created_at)}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600 hidden md:table-cell">{fmtDate(p.expected_date)}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-900 text-right font-medium">{fmt(p.total)}</td>
-                      <td className="px-4 sm:px-6 py-3"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
+                      <td className="px-4 sm:px-6 py-4 font-mono text-gray-900 hidden sm:table-cell">{p.purchase_number}</td>
+                      <td className="px-4 sm:px-6 py-4 font-medium text-gray-900">{p.supplier?.name ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600 whitespace-nowrap hidden sm:table-cell">{fmtDate(p.created_at)}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600 whitespace-nowrap hidden md:table-cell">{fmtDate(p.expected_date)}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-900 text-right font-medium whitespace-nowrap">{fmt(p.total)}</td>
+                      <td className="px-4 sm:px-6 py-4"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
                     </tr>)
                 })}
               </tbody></table>

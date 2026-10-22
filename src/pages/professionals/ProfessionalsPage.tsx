@@ -58,18 +58,18 @@ export function ProfessionalsPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Telefone</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Nome</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Telefone</th>
+                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filtered.length > 0 ? filtered.map((p) => (
                     <tr key={p.id} className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer"
                       onClick={() => { setEditing(p); setShowForm(true) }}>
-                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{p.name}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600">{p.phone ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-3">
+                      <td className="px-4 sm:px-6 py-4 font-medium text-gray-900">{p.name}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600">{p.phone ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-4">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${p.active ? 'bg-success-50 text-success-700' : 'bg-gray-100 text-gray-600'}`}>
                           {p.active ? 'Ativo' : 'Inativo'}
                         </span>
@@ -81,9 +81,9 @@ export function ProfessionalsPage() {
                     { name: 'Ana Oliveira', phone: '(11) 97654-3210', active: false },
                   ].map((g, i) => (
                     <tr key={i} className="border-b border-gray-50 opacity-40 pointer-events-none select-none">
-                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{g.name}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600">{g.phone}</td>
-                      <td className="px-4 sm:px-6 py-3">
+                      <td className="px-4 sm:px-6 py-4 font-medium text-gray-900">{g.name}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600">{g.phone}</td>
+                      <td className="px-4 sm:px-6 py-4">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${g.active ? 'bg-success-50 text-success-700' : 'bg-gray-100 text-gray-600'}`}>
                           {g.active ? 'Ativo' : 'Inativo'}
                         </span>

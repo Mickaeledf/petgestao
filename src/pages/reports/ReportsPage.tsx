@@ -82,7 +82,7 @@ export function ReportsPage() {
     <div>
       <PageHeader title="Relatórios" description="Relatórios de vendas, estoque, serviços e financeiro" />
 
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div className="flex flex-wrap gap-2 mb-6">
         {reports.map(r => (
           <button key={r.key} onClick={() => { setActiveReport(r.key); setData([]) }}
             className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${activeReport === r.key ? 'bg-primary-50 border-primary-300 text-primary-700' : 'border-gray-300 text-gray-600 hover:bg-gray-50'}`}>
@@ -91,7 +91,7 @@ export function ReportsPage() {
         ))}
       </div>
 
-      <Card className="mb-4">
+      <Card className="mb-6">
         <CardContent className="flex flex-wrap items-end gap-4">
           {activeReport !== 'stock' && activeReport !== 'customers' && (
             <>
@@ -114,14 +114,14 @@ export function ReportsPage() {
       {data.length > 0 && (
         <>
           {activeReport === 'sales' && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Total vendas</p><p className="text-xl font-bold text-success-600">{fmt(summary.total)}</p></CardContent></Card>
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Qtd. vendas</p><p className="text-xl font-bold text-gray-900">{summary.count}</p></CardContent></Card>
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Ticket médio</p><p className="text-xl font-bold text-primary-600">{fmt(summary.avg)}</p></CardContent></Card>
             </div>
           )}
           {activeReport === 'financial' && (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Receitas</p><p className="text-xl font-bold text-success-600">{fmt(summary.income)}</p></CardContent></Card>
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Despesas</p><p className="text-xl font-bold text-danger-600">{fmt(summary.expense)}</p></CardContent></Card>
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Saldo</p><p className={`text-xl font-bold ${summary.balance >= 0 ? 'text-success-600' : 'text-danger-600'}`}>{fmt(summary.balance)}</p></CardContent></Card>
@@ -129,7 +129,7 @@ export function ReportsPage() {
             </div>
           )}
           {activeReport === 'stock' && (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Total itens</p><p className="text-xl font-bold text-gray-900">{summary.total}</p></CardContent></Card>
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Estoque baixo</p><p className="text-xl font-bold text-warning-600">{summary.low}</p></CardContent></Card>
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Sem estoque</p><p className="text-xl font-bold text-danger-600">{summary.zero}</p></CardContent></Card>
@@ -137,7 +137,7 @@ export function ReportsPage() {
             </div>
           )}
           {activeReport === 'services' && (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Total agend.</p><p className="text-xl font-bold text-gray-900">{summary.total}</p></CardContent></Card>
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Concluídos</p><p className="text-xl font-bold text-success-600">{summary.completed}</p></CardContent></Card>
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Cancelados</p><p className="text-xl font-bold text-danger-600">{summary.cancelled}</p></CardContent></Card>
@@ -145,7 +145,7 @@ export function ReportsPage() {
             </div>
           )}
           {activeReport === 'customers' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Total clientes</p><p className="text-xl font-bold text-gray-900">{summary.total}</p></CardContent></Card>
               <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Com pets</p><p className="text-xl font-bold text-primary-600">{summary.withPets}</p></CardContent></Card>
             </div>
@@ -155,78 +155,78 @@ export function ReportsPage() {
             <CardContent className="p-0 overflow-x-auto">
               {activeReport === 'sales' && (
                 <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">#</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Cliente</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Data</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Total</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">#</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Cliente</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Data</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-right">Total</th>
                 </tr></thead><tbody>{data.map((r: any) => (
                   <tr key={r.id} className="border-b border-gray-50">
-                    <td className="px-4 sm:px-6 py-3 font-mono">{r.sale_number}</td>
-                    <td className="px-4 sm:px-6 py-3">{r.customer?.name ?? 'Consumidor final'}</td>
-                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.completed_at ? fmtDate(r.completed_at) : '—'}</td>
-                    <td className="px-4 sm:px-6 py-3 text-right font-medium text-success-600">{fmt(r.total)}</td>
+                    <td className="px-4 sm:px-6 py-4 font-mono">{r.sale_number}</td>
+                    <td className="px-4 sm:px-6 py-4">{r.customer?.name ?? 'Consumidor final'}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-600 whitespace-nowrap">{r.completed_at ? fmtDate(r.completed_at) : '—'}</td>
+                    <td className="px-4 sm:px-6 py-4 text-right font-medium text-success-600 whitespace-nowrap">{fmt(r.total)}</td>
                   </tr>))}</tbody></table>
               )}
               {activeReport === 'financial' && (
                 <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Tipo</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Descrição</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Vencimento</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Tipo</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Descrição</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Vencimento</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-right">Valor</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
                 </tr></thead><tbody>{data.map((r: any) => (
                   <tr key={r.id} className="border-b border-gray-50">
-                    <td className="px-4 sm:px-6 py-3"><span className={`text-xs font-medium px-2 py-0.5 rounded-full ${r.type === 'income' ? 'bg-success-50 text-success-700' : 'bg-danger-50 text-danger-700'}`}>{r.type === 'income' ? 'Receita' : 'Despesa'}</span></td>
-                    <td className="px-4 sm:px-6 py-3">{r.description}</td>
-                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.due_date ? fmtDate(r.due_date) : '—'}</td>
-                    <td className={`px-4 sm:px-6 py-3 text-right font-medium ${r.type === 'income' ? 'text-success-600' : 'text-danger-600'}`}>{fmt(r.amount)}</td>
-                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.status === 'paid' ? 'Pago' : r.status === 'pending' ? 'Pendente' : r.status}</td>
+                    <td className="px-4 sm:px-6 py-4"><span className={`text-xs font-medium px-2 py-0.5 rounded-full ${r.type === 'income' ? 'bg-success-50 text-success-700' : 'bg-danger-50 text-danger-700'}`}>{r.type === 'income' ? 'Receita' : 'Despesa'}</span></td>
+                    <td className="px-4 sm:px-6 py-4">{r.description}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-600 whitespace-nowrap">{r.due_date ? fmtDate(r.due_date) : '—'}</td>
+                    <td className={`px-4 sm:px-6 py-4 text-right font-medium whitespace-nowrap ${r.type === 'income' ? 'text-success-600' : 'text-danger-600'}`}>{fmt(r.amount)}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-600">{r.status === 'paid' ? 'Pago' : r.status === 'pending' ? 'Pendente' : r.status}</td>
                   </tr>))}</tbody></table>
               )}
               {activeReport === 'stock' && (
                 <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Produto</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Quantidade</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Mínimo</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Produto</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Quantidade</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Mínimo</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
                 </tr></thead><tbody>{data.map((r: any) => {
                   const isZero = r.quantity === 0; const isLow = !isZero && r.product && r.quantity <= (r.product.minimum_stock ?? 0)
                   return (
                     <tr key={r.id} className="border-b border-gray-50">
-                      <td className="px-4 sm:px-6 py-3 font-medium">{r.product?.name ?? '—'}</td>
-                      <td className={`px-4 sm:px-6 py-3 ${isZero ? 'text-danger-600' : isLow ? 'text-warning-600' : ''}`}>{r.quantity} {r.product?.unit ?? 'un'}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600">{r.product?.minimum_stock ?? 0}</td>
-                      <td className="px-4 sm:px-6 py-3"><span className={`text-xs font-medium px-2 py-0.5 rounded-full ${isZero ? 'bg-danger-50 text-danger-700' : isLow ? 'bg-warning-50 text-warning-700' : 'bg-success-50 text-success-700'}`}>{isZero ? 'Sem estoque' : isLow ? 'Baixo' : 'Normal'}</span></td>
+                      <td className="px-4 sm:px-6 py-4 font-medium">{r.product?.name ?? '—'}</td>
+                      <td className={`px-4 sm:px-6 py-4 ${isZero ? 'text-danger-600' : isLow ? 'text-warning-600' : ''}`}>{r.quantity} {r.product?.unit ?? 'un'}</td>
+                      <td className="px-4 sm:px-6 py-4 text-gray-600">{r.product?.minimum_stock ?? 0}</td>
+                      <td className="px-4 sm:px-6 py-4"><span className={`text-xs font-medium px-2 py-0.5 rounded-full ${isZero ? 'bg-danger-50 text-danger-700' : isLow ? 'bg-warning-50 text-warning-700' : 'bg-success-50 text-success-700'}`}>{isZero ? 'Sem estoque' : isLow ? 'Baixo' : 'Normal'}</span></td>
                     </tr>)})}</tbody></table>
               )}
               {activeReport === 'services' && (
                 <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Data</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Serviço</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Profissional</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Valor</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Data</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Serviço</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Profissional</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-right">Valor</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
                 </tr></thead><tbody>{data.map((r: any) => (
                   <tr key={r.id} className="border-b border-gray-50">
-                    <td className="px-4 sm:px-6 py-3 text-gray-600">{fmtDate(r.date)}</td>
-                    <td className="px-4 sm:px-6 py-3">{r.service?.name ?? '—'}</td>
-                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.professional?.name ?? '—'}</td>
-                    <td className="px-4 sm:px-6 py-3 text-right font-medium">{r.price ? fmt(r.price) : '—'}</td>
-                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.status === 'completed' ? 'Concluído' : r.status === 'cancelled' ? 'Cancelado' : r.status === 'scheduled' ? 'Agendado' : r.status}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-600 whitespace-nowrap">{fmtDate(r.date)}</td>
+                    <td className="px-4 sm:px-6 py-4">{r.service?.name ?? '—'}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-600">{r.professional?.name ?? '—'}</td>
+                    <td className="px-4 sm:px-6 py-4 text-right font-medium whitespace-nowrap">{r.price ? fmt(r.price) : '—'}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-600">{r.status === 'completed' ? 'Concluído' : r.status === 'cancelled' ? 'Cancelado' : r.status === 'scheduled' ? 'Agendado' : r.status}</td>
                   </tr>))}</tbody></table>
               )}
               {activeReport === 'customers' && (
                 <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Telefone</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">E-mail</th>
-                  <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Pets</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Nome</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Telefone</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">E-mail</th>
+                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Pets</th>
                 </tr></thead><tbody>{data.map((r: any) => (
                   <tr key={r.id} className="border-b border-gray-50">
-                    <td className="px-4 sm:px-6 py-3 font-medium">{r.name}</td>
-                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.phone ?? '—'}</td>
-                    <td className="px-4 sm:px-6 py-3 text-gray-600">{r.email ?? '—'}</td>
-                    <td className="px-4 sm:px-6 py-3">{r.pets?.length ?? 0}</td>
+                    <td className="px-4 sm:px-6 py-4 font-medium">{r.name}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-600">{r.phone ?? '—'}</td>
+                    <td className="px-4 sm:px-6 py-4 text-gray-600">{r.email ?? '—'}</td>
+                    <td className="px-4 sm:px-6 py-4">{r.pets?.length ?? 0}</td>
                   </tr>))}</tbody></table>
               )}
             </CardContent>
