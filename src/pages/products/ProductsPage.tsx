@@ -103,16 +103,16 @@ export function ProductsPage() {
             />
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full text-sm table-auto">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
                     <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden md:table-cell">Categoria</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden lg:table-cell">Código</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right hidden sm:table-cell">Custo</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right">Preço</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right hidden md:table-cell">Estoque</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Status</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden md:table-cell whitespace-nowrap">Categoria</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden lg:table-cell whitespace-nowrap">Código</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right hidden sm:table-cell whitespace-nowrap">Custo</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right whitespace-nowrap">Preço</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right hidden md:table-cell whitespace-nowrap">Estoque</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 whitespace-nowrap">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -127,12 +127,12 @@ export function ProductsPage() {
                       <td className="px-4 sm:px-6 py-3 text-gray-500 font-mono text-xs hidden lg:table-cell">{product.internal_code ?? '—'}</td>
                       <td className="px-4 sm:px-6 py-3 text-gray-600 text-right hidden sm:table-cell">{formatCurrency(product.cost_price)}</td>
                       <td className="px-4 sm:px-6 py-3 font-medium text-gray-900 text-right">{formatCurrency(product.sale_price)}</td>
-                      <td className="px-4 sm:px-6 py-3 text-right hidden md:table-cell">
+                      <td className="px-4 sm:px-6 py-3 text-right hidden md:table-cell whitespace-nowrap">
                         <span className={product.minimum_stock > 0 && (product as Product & { stock_balance?: number }).stock_balance !== undefined ? 'text-danger-600' : 'text-gray-600'}>
                           —
                         </span>
                       </td>
-                      <td className="px-4 sm:px-6 py-3">
+                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                           product.active ? 'bg-success-50 text-success-700' : 'bg-gray-100 text-gray-600'
                         }`}>
@@ -153,8 +153,8 @@ export function ProductsPage() {
                       <td className="px-4 sm:px-6 py-3 text-gray-500 font-mono text-xs hidden lg:table-cell">{g.code}</td>
                       <td className="px-4 sm:px-6 py-3 text-gray-600 text-right hidden sm:table-cell">{formatCurrency(g.cost)}</td>
                       <td className="px-4 sm:px-6 py-3 font-medium text-gray-900 text-right">{formatCurrency(g.price)}</td>
-                      <td className="px-4 sm:px-6 py-3 text-right hidden md:table-cell">{g.stock}</td>
-                      <td className="px-4 sm:px-6 py-3">
+                      <td className="px-4 sm:px-6 py-3 text-right hidden md:table-cell whitespace-nowrap">{g.stock}</td>
+                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap">
                         <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-success-50 text-success-700">Ativo</span>
                       </td>
                     </tr>

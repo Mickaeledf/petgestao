@@ -92,7 +92,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
       )}
 
       <aside
-        className={`fixed top-0 left-0 h-full bg-sidebar z-50 flex flex-col transition-all duration-300 w-72 lg:w-64
+        className={`fixed top-0 left-0 h-full bg-sidebar z-50 flex flex-col transition-all duration-300 w-64
           ${open ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0
         `}
       >

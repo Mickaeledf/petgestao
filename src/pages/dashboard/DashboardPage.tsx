@@ -28,10 +28,10 @@ interface StatCardProps {
 function StatCard({ label, value, icon, trend, color }: StatCardProps) {
   return (
     <Card>
-      <CardContent className="flex items-center justify-between gap-4">
+      <CardContent className="flex items-center justify-between gap-4 p-5">
         <div className="min-w-0">
-          <p className="text-sm text-gray-500">{label}</p>
-          <p className="text-xl sm:text-2xl font-bold text-gray-900 mt-1 truncate">{value}</p>
+          <p className="text-sm text-gray-500 mb-1">{label}</p>
+          <p className="text-xl sm:text-2xl font-bold text-gray-900 truncate">{value}</p>
           {trend && (
             <div className={`flex items-center gap-1 mt-2 text-sm ${trend.positive ? 'text-success-600' : 'text-danger-600'}`}>
               {trend.positive ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />}
@@ -130,7 +130,7 @@ export function DashboardPage() {
     <div>
       <PageHeader title="Dashboard" description={`Visão geral de ${currentEstablishment.name}`} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
         <StatCard label="Vendas hoje" value={fmt(salesToday)}
           icon={<DollarSign className="w-6 h-6 text-primary-600" />} color="bg-primary-100" />
         <StatCard label="Qtd. vendas" value={String(salesCount)}
@@ -141,7 +141,7 @@ export function DashboardPage() {
           icon={<TrendingUp className="w-6 h-6 text-warning-600" />} color="bg-warning-50" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
         <StatCard label="Clientes ativos" value={String(totalCustomers)}
           icon={<Users className="w-6 h-6 text-blue-600" />} color="bg-blue-50" />
         <StatCard label="Pets cadastrados" value={String(totalPets)}

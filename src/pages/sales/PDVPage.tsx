@@ -282,7 +282,7 @@ export function PDVPage() {
   return (
     <div className="fixed inset-0 z-50 bg-gray-100 flex flex-col">
       {/* Top bar */}
-      <div className="bg-primary-800 text-white px-4 py-2.5 flex items-center justify-between shrink-0">
+      <div className="bg-primary-800 text-white px-6 py-3 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-3">
           <button onClick={() => navigate('/sales')} className="p-1.5 rounded-lg hover:bg-primary-700 transition-colors">
             <ArrowLeft className="w-5 h-5" />
@@ -308,7 +308,7 @@ export function PDVPage() {
       </div>
 
       {/* Last added product banner */}
-      <div className="bg-primary-700 text-white px-4 py-3 shrink-0">
+      <div className="bg-primary-700 text-white px-6 py-4 shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex-1 min-w-0">
             {lastAdded ? (
@@ -331,7 +331,7 @@ export function PDVPage() {
         {/* Left side - Search + Actions */}
         <div className="lg:w-80 xl:w-[400px] bg-white border-b lg:border-b-0 lg:border-r border-gray-200 flex flex-col shrink-0">
           {/* Search input */}
-          <div className="p-3 border-b border-gray-100">
+          <div className="p-4 border-b border-gray-100">
             <div className="flex gap-2">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -343,7 +343,7 @@ export function PDVPage() {
                   onChange={(e) => { setSearch(e.target.value); if (e.target.value) setShowProducts(true) }}
                   onKeyDown={(e) => { if (e.key === 'Enter') handleSearchSubmit() }}
                   onFocus={() => { if (search) setShowProducts(true) }}
-                  className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                 />
               </div>
               <button onClick={() => setShowScanner(true)}
@@ -372,7 +372,7 @@ export function PDVPage() {
           </div>
 
           {/* Action buttons */}
-          <div className="p-3 grid grid-cols-3 gap-2">
+          <div className="p-4 grid grid-cols-3 gap-2.5">
             <button onClick={handleCancel}
               className="flex flex-col items-center gap-1 py-3 px-2 rounded-xl border border-gray-200 hover:bg-danger-50 hover:border-danger-300 hover:text-danger-700 text-gray-600 transition-colors text-xs font-medium">
               <XCircle className="w-5 h-5" />
@@ -406,7 +406,7 @@ export function PDVPage() {
           </div>
 
           {/* Summary on mobile */}
-          <div className="lg:hidden p-3 border-t border-gray-100 bg-gray-50">
+          <div className="lg:hidden p-4 border-t border-gray-100 bg-gray-50">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-gray-500">{itemCount} {itemCount === 1 ? 'item' : 'itens'}</p>
