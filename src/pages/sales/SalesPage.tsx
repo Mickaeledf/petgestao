@@ -71,7 +71,7 @@ export function SalesPage() {
           </div>
         } />
       <Card>
-        <div className="p-5 border-b border-gray-100">
+        <div className="px-6 py-7 sm:px-8 border-b border-gray-100">
           <div className="relative max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input type="text" placeholder="Buscar por número ou cliente..." value={search} onChange={(e) => setSearch(e.target.value)}
@@ -80,8 +80,9 @@ export function SalesPage() {
         </div>
         <CardContent className="p-0">
           {loading ? (
-            <div className="flex items-center justify-center py-12">
+            <div className="flex flex-col items-center justify-center py-12 gap-3">
               <div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" />
+              <p className="text-sm text-gray-500">Carregando…</p>
             </div>
           ) : filtered.length === 0 ? (
             <EmptyState icon={ShoppingCart} title={search ? 'Nenhuma venda encontrada' : 'Nenhuma venda registrada'}
@@ -92,11 +93,11 @@ export function SalesPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
-                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap hidden sm:table-cell">#</th>
-                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Cliente</th>
-                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap hidden sm:table-cell">Data</th>
-                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-right">Total</th>
-                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
+                    <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap hidden sm:table-cell">#</th>
+                    <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Cliente</th>
+                    <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap hidden sm:table-cell">Data</th>
+                    <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap text-right">Total</th>
+                    <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -104,10 +105,10 @@ export function SalesPage() {
                     const st = statusLabel[s.status]
                     return (
                       <tr key={s.id} className="border-b border-gray-50 hover:bg-gray-50">
-                        <td className="px-4 sm:px-6 py-4 font-mono text-xs text-gray-500 hidden sm:table-cell">{s.sale_number}</td>
-                        <td className="px-4 sm:px-6 py-4 font-medium text-gray-900">{s.customer?.name ?? 'Consumidor final'}</td>
-                        <td className="px-4 sm:px-6 py-4 text-gray-600 hidden sm:table-cell">{fmtDate(s.created_at)}</td>
-                        <td className="px-4 sm:px-6 py-4 font-medium text-gray-900 text-right">{fmt(s.total)}</td>
+                        <td className="px-4 sm:px-6 py-5 font-mono text-xs text-gray-500 hidden sm:table-cell">{s.sale_number}</td>
+                        <td className="px-4 sm:px-6 py-5 font-medium text-gray-900">{s.customer?.name ?? 'Consumidor final'}</td>
+                        <td className="px-4 sm:px-6 py-5 text-gray-600 hidden sm:table-cell">{fmtDate(s.created_at)}</td>
+                        <td className="px-4 sm:px-6 py-5 font-medium text-gray-900 text-right">{fmt(s.total)}</td>
                         <td className="px-4 sm:px-6 py-4">
                           <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span>
                         </td>

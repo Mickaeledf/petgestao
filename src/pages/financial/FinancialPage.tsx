@@ -87,29 +87,30 @@ export function FinancialPage() {
         </div>
         <CardContent className="p-0">
           {loading ? (
-            <div className="flex items-center justify-center py-12"><div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" /></div>
+            <div className="flex flex-col items-center justify-center py-12 gap-3"><div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" />
+              <p className="text-sm text-gray-500">Carregando…</p></div>
           ) : filtered.length === 0 ? (
             <EmptyState icon={DollarSign} title="Nenhum lançamento" description="Registre receitas e despesas."
               actionLabel="Novo lançamento" onAction={() => setShowForm(true)} />
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Tipo</th>
-                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Descrição</th>
-                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Categoria</th>
-                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Vencimento</th>
-                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-right">Valor</th>
-                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
+                <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Tipo</th>
+                <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Descrição</th>
+                <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Categoria</th>
+                <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Vencimento</th>
+                <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap text-right">Valor</th>
+                <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Status</th>
               </tr></thead><tbody>
                 {filtered.map((t) => {
                   const st = statusLabel[t.status] ?? { text: t.status, cls: 'bg-gray-100 text-gray-600' }
                   return (
                     <tr key={t.id} className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer" onClick={() => { setEditing(t); setShowForm(true) }}>
                       <td className="px-4 sm:px-6 py-4"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${t.type === 'income' ? 'bg-success-50 text-success-700' : 'bg-danger-50 text-danger-700'}`}>{t.type === 'income' ? 'Receita' : 'Despesa'}</span></td>
-                      <td className="px-4 sm:px-6 py-4 font-medium text-gray-900">{t.description}</td>
-                      <td className="px-4 sm:px-6 py-4 text-gray-600">{t.category ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-4 text-gray-600 whitespace-nowrap">{fmtDate(t.due_date)}</td>
-                      <td className={`px-4 sm:px-6 py-4 font-medium text-right whitespace-nowrap ${t.type === 'income' ? 'text-success-600' : 'text-danger-600'}`}>{fmt(t.amount)}</td>
+                      <td className="px-4 sm:px-6 py-5 font-medium text-gray-900">{t.description}</td>
+                      <td className="px-4 sm:px-6 py-5 text-gray-600">{t.category ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-5 text-gray-600 whitespace-nowrap">{fmtDate(t.due_date)}</td>
+                      <td className={`px-4 sm:px-6 py-5 font-medium text-right whitespace-nowrap ${t.type === 'income' ? 'text-success-600' : 'text-danger-600'}`}>{fmt(t.amount)}</td>
                       <td className="px-4 sm:px-6 py-4"><span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${st.cls}`}>{st.text}</span></td>
                     </tr>)
                 })}

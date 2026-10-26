@@ -1,49 +1,91 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #eef2ff;
-  --color-primary-100: #e0e7ff;
-  --color-primary-200: #c7d2fe;
-  --color-primary-300: #a5b4fc;
-  --color-primary-400: #818cf8;
-  --color-primary-500: #6366f1;
-  --color-primary-600: #4f46e5;
-  --color-primary-700: #4338ca;
-  --color-primary-800: #3730a3;
-  --color-primary-900: #312e81;
+  /* Primary — Teal (cor do nicho pet shop) */
+  --color-primary-50: #f0fdfa;
+  --color-primary-100: #ccfbf1;
+  --color-primary-200: #99f6e4;
+  --color-primary-300: #5eead4;
+  --color-primary-400: #2dd4bf;
+  --color-primary-500: #14b8a6;
+  --color-primary-600: #0d9488;
+  --color-primary-700: #0f766e;
+  --color-primary-800: #115e59;
+  --color-primary-900: #134e4a;
 
+  /* Sucesso — Verde */
   --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
   --color-success-500: #22c55e;
   --color-success-600: #16a34a;
   --color-success-700: #15803d;
 
+  /* Atenção — Laranja */
   --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
   --color-warning-500: #f59e0b;
   --color-warning-600: #d97706;
   --color-warning-700: #b45309;
 
+  /* Informação — Azul */
+  --color-info-50: #eff6ff;
+  --color-info-100: #dbeafe;
+  --color-info-500: #3b82f6;
+  --color-info-600: #2563eb;
+  --color-info-700: #1d4ed8;
+
+  /* Perigo — Vermelho */
   --color-danger-50: #fef2f2;
+  --color-danger-100: #fee2e2;
   --color-danger-500: #ef4444;
   --color-danger-600: #dc2626;
   --color-danger-700: #b91c1c;
 
-  --color-sidebar: #1e1b4b;
-  --color-sidebar-hover: #312e81;
-  --color-sidebar-active: #818cf8;
-  --color-sidebar-text: #c4b5fd;
+  /* Sidebar — Degradê teal escuro */
+  --color-sidebar: #134e4a;
+  --color-sidebar-dark: #0c3532;
+  --color-sidebar-hover: #115e59;
+  --color-sidebar-active: #14b8a6;
+  --color-sidebar-text: #99f6e4;
   --color-sidebar-text-active: #ffffff;
 }
 
+/* ===== Layout ===== */
 :root {
   --sidebar-width: 0px;
 }
-
 @media (min-width: 1024px) {
   :root {
-    --sidebar-width: 16rem;
+    --sidebar-width: 240px;
   }
 }
 
+/* ===== Dark mode — variáveis ===== */
+:root {
+  --bg-page: #f5f7f5;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --border-color: #e2e8e2;
+  --border-light: #f1f5f1;
+  --text-primary: #1a2e1a;
+  --text-secondary: #5c6b5c;
+  --text-muted: #8a988a;
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+[data-theme="dark"] {
+  --bg-page: #0f1a17;
+  --bg-card: #1a2b25;
+  --bg-input: #1f3029;
+  --border-color: #2a3f36;
+  --border-light: #233530;
+  --text-primary: #e8f0ec;
+  --text-secondary: #9aada2;
+  --text-muted: #6b8078;
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* ===== Reset e base ===== */
 * {
   margin: 0;
   padding: 0;
@@ -52,8 +94,8 @@
 
 body {
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -62,12 +104,142 @@ body {
   min-height: 100svh;
 }
 
+/* ===== Dark mode overrides para Tailwind ===== */
+[data-theme="dark"] .bg-white {
+  background-color: var(--bg-card) !important;
+}
+[data-theme="dark"] .bg-gray-50 {
+  background-color: var(--bg-page) !important;
+}
+[data-theme="dark"] .bg-gray-100 {
+  background-color: #233530 !important;
+}
+[data-theme="dark"] .text-gray-900 {
+  color: var(--text-primary) !important;
+}
+[data-theme="dark"] .text-gray-800 {
+  color: #d0ddd5 !important;
+}
+[data-theme="dark"] .text-gray-700 {
+  color: #b0c4b8 !important;
+}
+[data-theme="dark"] .text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+[data-theme="dark"] .text-gray-500 {
+  color: var(--text-muted) !important;
+}
+[data-theme="dark"] .text-gray-400 {
+  color: #6b8078 !important;
+}
+[data-theme="dark"] .border-gray-200,
+[data-theme="dark"] .border-gray-100 {
+  border-color: var(--border-color) !important;
+}
+[data-theme="dark"] .border-gray-50 {
+  border-color: var(--border-light) !important;
+}
+[data-theme="dark"] .border-gray-300 {
+  border-color: #3a5246 !important;
+}
+[data-theme="dark"] .hover\:bg-gray-50:hover {
+  background-color: #233530 !important;
+}
+[data-theme="dark"] .hover\:bg-gray-100:hover {
+  background-color: #2a3f36 !important;
+}
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background-color: var(--bg-input) !important;
+  color: var(--text-primary) !important;
+  border-color: #3a5246 !important;
+}
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: var(--text-muted) !important;
+}
+[data-theme="dark"] .shadow-sm {
+  box-shadow: var(--shadow-card) !important;
+}
+[data-theme="dark"] .shadow-xl {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4) !important;
+}
+[data-theme="dark"] .bg-black\/50 {
+  background-color: rgba(0,0,0,0.7) !important;
+}
+[data-theme="dark"] .divide-gray-50 > :not(:first-child) {
+  border-color: var(--border-light) !important;
+}
+
+/* ===== Animações ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in {
+    animation: none !important;
+  }
+}
+
+/* ===== Tipografia tracking-tight ===== */
+h1, h2, h3 {
+  letter-spacing: -0.01em;
+}
+
+/* ===== Inputs number sem setas ===== */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+/* ===== Toast ===== */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(100%); }
+}
+.toast-enter {
+  animation: toastIn 0.3s ease-out both;
+}
+.toast-exit {
+  animation: toastOut 0.3s ease-in both;
+}
+
+/* ===== Impressão / PDF — A4 ===== */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  aside, header, nav, .no-print {
+    display: none !important;
+  }
+  main {
+    margin-left: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+  tr {
+    page-break-inside: avoid;
+  }
 }

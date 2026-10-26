@@ -28,7 +28,7 @@ interface StatCardProps {
 function StatCard({ label, value, icon, trend, color }: StatCardProps) {
   return (
     <Card>
-      <CardContent className="flex items-center justify-between gap-4" style={{ padding: '1.5rem' }}>
+      <CardContent className="flex items-center justify-between gap-4" style={{ padding: '1.75rem' }}>
         <div className="min-w-0">
           <p className="text-sm text-gray-500 mb-1.5">{label}</p>
           <p className="text-2xl font-bold text-gray-900 truncate">{value}</p>
@@ -121,7 +121,10 @@ export function DashboardPage() {
     return (
       <div>
         <PageHeader title="Dashboard" description={`Visão geral de ${currentEstablishment.name}`} />
-        <div className="flex items-center justify-center py-12"><div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" /></div>
+        <div className="flex flex-col items-center justify-center py-12 gap-3">
+          <div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" />
+          <p className="text-sm text-gray-500">Carregando seus dados…</p>
+        </div>
       </div>
     )
   }
@@ -130,18 +133,18 @@ export function DashboardPage() {
     <div>
       <PageHeader title="Dashboard" description={`Visão geral de ${currentEstablishment.name}`} />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
         <StatCard label="Vendas hoje" value={fmt(salesToday)}
           icon={<DollarSign className="w-6 h-6 text-primary-600" />} color="bg-primary-100" />
         <StatCard label="Qtd. vendas" value={String(salesCount)}
           icon={<ShoppingCart className="w-6 h-6 text-success-600" />} color="bg-success-50" />
         <StatCard label="Agendamentos hoje" value={String(appointmentsToday)}
-          icon={<Scissors className="w-6 h-6 text-violet-600" />} color="bg-violet-100" />
+          icon={<Scissors className="w-6 h-6 text-info-600" />} color="bg-info-50" />
         <StatCard label="Ticket médio" value={fmt(ticketMedio)}
-          icon={<TrendingUp className="w-6 h-6 text-amber-600" />} color="bg-amber-50" />
+          icon={<TrendingUp className="w-6 h-6 text-warning-600" />} color="bg-warning-50" />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
         <StatCard label="Clientes ativos" value={String(totalCustomers)}
           icon={<Users className="w-6 h-6 text-blue-600" />} color="bg-blue-50" />
         <StatCard label="Pets cadastrados" value={String(totalPets)}
@@ -162,7 +165,7 @@ export function DashboardPage() {
             ) : (
               <ul className="divide-y divide-gray-50">
                 {lowStockItems.map((it) => (
-                  <li key={it.id} className="px-4 sm:px-6 py-3 flex justify-between items-center">
+                  <li key={it.id} className="px-4 sm:px-6 py-5 flex justify-between items-center">
                     <span className="text-sm text-gray-900">{it.product?.name}</span>
                     <span className={`text-sm font-medium ${it.quantity === 0 ? 'text-danger-600' : 'text-warning-600'}`}>
                       {it.quantity} un.
@@ -207,7 +210,7 @@ export function DashboardPage() {
             ) : (
               <ul className="divide-y divide-gray-50">
                 {recentSales.map((s: any) => (
-                  <li key={s.id} className="px-4 sm:px-6 py-3 flex justify-between items-center">
+                  <li key={s.id} className="px-4 sm:px-6 py-5 flex justify-between items-center">
                     <div>
                       <span className="text-sm font-medium text-gray-900">#{s.sale_number}</span>
                       <p className="text-xs text-gray-500">{s.customer?.name ?? 'Consumidor final'}</p>

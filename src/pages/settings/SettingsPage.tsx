@@ -86,7 +86,8 @@ export function SettingsPage() {
     return (
       <div>
         <PageHeader title="Configurações" description="Configurações do estabelecimento e perfil" />
-        <div className="flex items-center justify-center py-12"><div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" /></div>
+        <div className="flex flex-col items-center justify-center py-12 gap-3"><div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" />
+              <p className="text-sm text-gray-500">Carregando…</p></div>
       </div>
     )
   }
@@ -98,23 +99,23 @@ export function SettingsPage() {
       {error && <div className="mb-4 p-3 rounded-lg bg-danger-50 text-danger-700 text-sm">{error}</div>}
       {success && <div className="mb-4 p-3 rounded-lg bg-success-50 text-success-700 text-sm">{success}</div>}
 
-      <div className="space-y-6">
+      <div className="space-y-8">
         <Card>
           <CardHeader>
             <h3 className="font-semibold text-gray-900 flex items-center gap-2"><Building2 className="w-5 h-5" /> Dados do estabelecimento</h3>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSaveEstablishment} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleSaveEstablishment} className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Input label="Nome do estabelecimento *" value={name} onChange={(e) => setName(e.target.value)} />
                 <Input label="CNPJ / CPF" value={document} onChange={(e) => setDocument(e.target.value)} placeholder="00.000.000/0000-00" />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Input label="Telefone" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(00) 00000-0000" />
                 <Input label="E-mail" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               <Input label="Endereço" value={address} onChange={(e) => setAddress(e.target.value)} />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <Input label="Cidade" value={city} onChange={(e) => setCity(e.target.value)} />
                 <Input label="Estado" value={state} onChange={(e) => setState(e.target.value)} placeholder="SP" />
                 <Input label="CEP" value={zip} onChange={(e) => setZip(e.target.value)} placeholder="00000-000" />
@@ -131,8 +132,8 @@ export function SettingsPage() {
             <h3 className="font-semibold text-gray-900">Meu perfil</h3>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSaveUser} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleSaveUser} className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Input label="Nome" value={userName} onChange={(e) => setUserName(e.target.value)} />
                 <Input label="Telefone" value={userPhone} onChange={(e) => setUserPhone(e.target.value)} />
               </div>

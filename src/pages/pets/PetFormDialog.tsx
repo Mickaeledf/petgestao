@@ -79,9 +79,9 @@ export function PetFormDialog({ pet, onClose, onSaved }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 overflow-y-auto p-0 sm:p-4">
-      <div className="bg-white rounded-t-xl sm:rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto mx-0 sm:mx-4">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-0 sm:p-4">
+      <div className="bg-white rounded-t-xl sm:rounded-xl shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col mx-0 sm:mx-4">
+        <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-gray-100 shrink-0">
           <h2 className="text-lg font-semibold text-gray-900">
             {pet ? 'Editar animal' : 'Novo animal'}
           </h2>
@@ -90,17 +90,17 @@ export function PetFormDialog({ pet, onClose, onSaved }: Props) {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-8 overflow-y-auto">
           {error && <div className="p-3 rounded-lg bg-danger-50 text-danger-700 text-sm">{error}</div>}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Input label="Nome do animal *" value={name} onChange={(e) => setName(e.target.value)} />
-            <div className="space-y-1">
+            <div className="space-y-2.5">
               <label className="block text-sm font-medium text-gray-700">Tutor *</label>
               <select
                 value={customerId}
                 onChange={(e) => setCustomerId(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[46px]"
               >
                 <option value="">Selecione o tutor</option>
                 {customers.map((c) => (
@@ -110,13 +110,13 @@ export function PetFormDialog({ pet, onClose, onSaved }: Props) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="space-y-1">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="space-y-2.5">
               <label className="block text-sm font-medium text-gray-700">Espécie</label>
               <select
                 value={species}
                 onChange={(e) => setSpecies(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[46px]"
               >
                 <option value="Cão">Cão</option>
                 <option value="Gato">Gato</option>
@@ -128,12 +128,12 @@ export function PetFormDialog({ pet, onClose, onSaved }: Props) {
               </select>
             </div>
             <Input label="Raça" value={breed} onChange={(e) => setBreed(e.target.value)} />
-            <div className="space-y-1">
+            <div className="space-y-2.5">
               <label className="block text-sm font-medium text-gray-700">Sexo</label>
               <select
                 value={sex}
                 onChange={(e) => setSex(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[46px]"
               >
                 <option value="">Não informado</option>
                 <option value="macho">Macho</option>
@@ -142,13 +142,13 @@ export function PetFormDialog({ pet, onClose, onSaved }: Props) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="space-y-1">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="space-y-2.5">
               <label className="block text-sm font-medium text-gray-700">Porte</label>
               <select
                 value={size}
                 onChange={(e) => setSize(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[46px]"
               >
                 <option value="">Não informado</option>
                 <option value="mini">Mini</option>
@@ -163,25 +163,25 @@ export function PetFormDialog({ pet, onClose, onSaved }: Props) {
             <Input label="Data de nascimento" type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} />
           </div>
 
-          <div className="space-y-1">
+          <div className="space-y-2.5">
             <label className="block text-sm font-medium text-gray-700">Observações de comportamento</label>
             <textarea
               value={behaviorNotes}
               onChange={(e) => setBehaviorNotes(e.target.value)}
               rows={2}
               placeholder="Ex: Agitado, morde, precisa de focinheira..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[46px]"
             />
           </div>
 
-          <div className="space-y-1">
+          <div className="space-y-2.5">
             <label className="block text-sm font-medium text-gray-700">Preferências de atendimento</label>
             <textarea
               value={careNotes}
               onChange={(e) => setCareNotes(e.target.value)}
               rows={2}
               placeholder="Ex: Tosa na máquina 3, banho com shampoo neutro..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[46px]"
             />
           </div>
 

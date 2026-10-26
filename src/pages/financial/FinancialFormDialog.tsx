@@ -58,15 +58,15 @@ export function FinancialFormDialog({ transaction, onClose, onSaved }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 overflow-y-auto p-0 sm:p-4">
-      <div className="bg-white rounded-t-xl sm:rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto mx-0 sm:mx-4">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-0 sm:p-4">
+      <div className="bg-white rounded-t-xl sm:rounded-xl shadow-xl w-full max-w-xl max-h-[90vh] flex flex-col mx-0 sm:mx-4">
+        <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-gray-100 shrink-0">
           <h2 className="text-lg font-semibold text-gray-900">{transaction ? 'Editar lançamento' : 'Novo lançamento'}</h2>
           <button onClick={onClose} className="p-1 rounded-lg hover:bg-gray-100"><X className="w-5 h-5 text-gray-500" /></button>
         </div>
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-8 overflow-y-auto">
           {error && <div className="p-3 rounded-lg bg-danger-50 text-danger-700 text-sm">{error}</div>}
-          <div className="space-y-1">
+          <div className="space-y-2.5">
             <label className="block text-sm font-medium text-gray-700">Tipo *</label>
             <div className="flex gap-2">
               <button type="button" onClick={() => setType('income')} className={`flex-1 py-2 rounded-lg text-sm font-medium border ${type === 'income' ? 'bg-success-50 border-success-300 text-success-700' : 'border-gray-300 text-gray-600'}`}>Receita</button>
@@ -74,24 +74,24 @@ export function FinancialFormDialog({ transaction, onClose, onSaved }: Props) {
             </div>
           </div>
           <Input label="Descrição *" value={description} onChange={(e) => setDescription(e.target.value)} />
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-8">
             <Input label="Categoria" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Ex: Aluguel" />
             <Input label="Valor (R$) *" type="number" step="0.01" min="0" value={amount} onChange={(e) => setAmount(e.target.value)} />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-8">
             <Input label="Vencimento" type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
             <Input label="Data pagamento" type="date" value={paidDate} onChange={(e) => setPaidDate(e.target.value)} />
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1">
+          <div className="grid grid-cols-2 gap-8">
+            <div className="space-y-2.5">
               <label className="block text-sm font-medium text-gray-700">Status</label>
-              <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+              <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm min-h-[46px]">
                 <option value="pending">Pendente</option><option value="paid">Pago</option><option value="overdue">Vencido</option><option value="cancelled">Cancelado</option>
               </select>
             </div>
-            <div className="space-y-1">
+            <div className="space-y-2.5">
               <label className="block text-sm font-medium text-gray-700">Forma pgto</label>
-              <select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+              <select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)} className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm min-h-[46px]">
                 <option value="">—</option><option value="dinheiro">Dinheiro</option><option value="pix">PIX</option><option value="credito">Crédito</option><option value="debito">Débito</option><option value="boleto">Boleto</option><option value="transferencia">Transferência</option>
               </select>
             </div>

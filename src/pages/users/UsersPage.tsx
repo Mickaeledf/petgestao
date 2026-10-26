@@ -204,7 +204,7 @@ export function UsersPage() {
               <div className="space-y-1">
                 <label className="block text-sm font-medium text-gray-700">Cargo</label>
                 <select value={inviteRole} onChange={(e) => setInviteRole(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                  className="px-3 py-3 border border-gray-300 rounded-lg text-sm min-h-[46px]">
                   <option value="">Selecione...</option>
                   {roles.map((r) => <option key={r.id} value={r.id}>{ROLE_LABELS[r.name] ?? r.name}</option>)}
                 </select>
@@ -218,7 +218,7 @@ export function UsersPage() {
 
       {/* MEMBROS */}
       <Card>
-        <div className="p-5 border-b border-gray-100">
+        <div className="px-6 py-7 sm:px-8 border-b border-gray-100">
           <div className="relative max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input type="text" placeholder="Buscar membro..." value={search} onChange={(e) => setSearch(e.target.value)}
@@ -227,17 +227,18 @@ export function UsersPage() {
         </div>
         <CardContent className="p-0">
           {loading ? (
-            <div className="flex items-center justify-center py-12"><div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" /></div>
+            <div className="flex flex-col items-center justify-center py-12 gap-3"><div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" />
+              <p className="text-sm text-gray-500">Carregando…</p></div>
           ) : filtered.length === 0 ? (
             <EmptyState icon={UserCog} title="Nenhum membro" description="Adicione membros ao seu estabelecimento."
               actionLabel="Adicionar" onAction={() => setShowInvite(true)} />
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Usuário</th>
-                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Cargo</th>
-                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Status</th>
-                <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Ações</th>
+                <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Usuário</th>
+                <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Cargo</th>
+                <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Status</th>
+                <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Ações</th>
               </tr></thead><tbody>
                 {filtered.map((m) => (
                   <tr key={m.id} className="border-b border-gray-50">
@@ -313,17 +314,17 @@ export function UsersPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
-                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Módulo</th>
-                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-center">
+                    <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Módulo</th>
+                    <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap text-center">
                       <div className="flex items-center justify-center gap-1"><Eye className="w-3.5 h-3.5" /> Ver</div>
                     </th>
-                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-center">
+                    <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap text-center">
                       <div className="flex items-center justify-center gap-1"><FilePlus className="w-3.5 h-3.5" /> Criar</div>
                     </th>
-                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-center">
+                    <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap text-center">
                       <div className="flex items-center justify-center gap-1"><PenLine className="w-3.5 h-3.5" /> Editar</div>
                     </th>
-                    <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-center">
+                    <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap text-center">
                       <div className="flex items-center justify-center gap-1"><Trash2 className="w-3.5 h-3.5" /> Excluir</div>
                     </th>
                   </tr>
@@ -331,12 +332,12 @@ export function UsersPage() {
                 <tbody>
                   {ALL_MODULES.map((mod) => (
                     <tr key={mod} className="border-b border-gray-50">
-                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{MODULE_LABELS[mod]}</td>
+                      <td className="px-4 sm:px-6 py-5 font-medium text-gray-900">{MODULE_LABELS[mod]}</td>
                       {(['can_view', 'can_create', 'can_edit', 'can_delete'] as const).map((field) => {
                         const checked = getPermValue(selectedRole, mod, field)
                         const disabled = selectedRoleData.is_owner || !isOwner || savingPerm
                         return (
-                          <td key={field} className="px-4 sm:px-6 py-3 text-center">
+                          <td key={field} className="px-4 sm:px-6 py-5 text-center">
                             <input
                               type="checkbox"
                               checked={checked}

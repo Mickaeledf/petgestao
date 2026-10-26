@@ -115,9 +115,9 @@ export function NewSaleDialog({ onClose, onSaved }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 overflow-y-auto p-0 sm:p-4">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-0 sm:p-4">
       <div className="bg-white rounded-t-xl sm:rounded-xl shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden mx-0 sm:mx-4 flex flex-col">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+        <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-gray-100 shrink-0">
           <h2 className="text-lg font-semibold text-gray-900">Nova venda</h2>
           <button onClick={onClose} className="p-1 rounded-lg hover:bg-gray-100"><X className="w-5 h-5 text-gray-500" /></button>
         </div>
@@ -127,7 +127,7 @@ export function NewSaleDialog({ onClose, onSaved }: Props) {
             <div className="p-4 border-b border-gray-100">
               <div className="flex gap-2">
                 <input type="text" placeholder="Buscar produto..." value={search} onChange={(e) => setSearch(e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+                  className="flex-1 px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[46px]" />
                 <button onClick={() => setShowScanner(true)}
                   className="flex items-center justify-center px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-600"
                   title="Escanear código de barras">
@@ -149,7 +149,7 @@ export function NewSaleDialog({ onClose, onSaved }: Props) {
           <div className="w-1/2 flex flex-col overflow-hidden">
             <div className="p-4 border-b border-gray-100">
               <select value={customerId} onChange={(e) => setCustomerId(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[46px]">
                 <option value="">Consumidor final</option>
                 {customers.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
               </select>
@@ -188,10 +188,10 @@ export function NewSaleDialog({ onClose, onSaved }: Props) {
                 <span>Total</span>
                 <span className="text-primary-600">{fmt(total)}</span>
               </div>
-              <div className="space-y-1">
+              <div className="space-y-2.5">
                 <label className="text-sm text-gray-600">Forma de pagamento</label>
                 <select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                  className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm min-h-[46px]">
                   <option value="dinheiro">Dinheiro</option>
                   <option value="pix">PIX</option>
                   <option value="credito">Cartão de crédito</option>

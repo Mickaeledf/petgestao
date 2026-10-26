@@ -48,7 +48,8 @@ export function LicensePage() {
     return (
       <div>
         <PageHeader title="Licença" description="Informações da licença do software" />
-        <div className="flex items-center justify-center py-12"><div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" /></div>
+        <div className="flex flex-col items-center justify-center py-12 gap-3"><div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" />
+              <p className="text-sm text-gray-500">Carregando…</p></div>
       </div>
     )
   }
@@ -64,7 +65,7 @@ export function LicensePage() {
           </CardHeader>
           <CardContent>
             {license ? (
-              <div className="space-y-4">
+              <div className="space-y-8">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-500">Plano</span>
                   <span className="text-lg font-bold text-primary-600">{planLabel[license.plan] ?? license.plan}</span>

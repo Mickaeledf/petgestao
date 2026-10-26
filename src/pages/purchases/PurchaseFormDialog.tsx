@@ -107,29 +107,29 @@ export function PurchaseFormDialog({ purchase, onClose, onSaved }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 overflow-y-auto p-0 sm:p-4">
-      <div className="bg-white rounded-t-xl sm:rounded-xl shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto mx-0 sm:mx-4">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-0 sm:p-4">
+      <div className="bg-white rounded-t-xl sm:rounded-xl shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col mx-0 sm:mx-4">
+        <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-gray-100 shrink-0">
           <h2 className="text-lg font-semibold text-gray-900">{purchase ? `Compra #${purchase.purchase_number}` : 'Nova Compra'}</h2>
           <button onClick={onClose} className="p-1 rounded-lg hover:bg-gray-100"><X className="w-5 h-5 text-gray-500" /></button>
         </div>
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-8 overflow-y-auto">
           {error && <div className="p-3 rounded-lg bg-danger-50 text-danger-700 text-sm">{error}</div>}
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="space-y-1">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="space-y-2.5">
               <label className="block text-sm font-medium text-gray-700">Fornecedor</label>
               <select value={supplierId} onChange={(e) => setSupplierId(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm min-h-[46px]">
                 <option value="">Selecione...</option>
                 {suppliers.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
               </select>
             </div>
             <Input label="Previsão entrega" type="date" value={expectedDate} onChange={(e) => setExpectedDate(e.target.value)} />
             {purchase && (
-              <div className="space-y-1">
+              <div className="space-y-2.5">
                 <label className="block text-sm font-medium text-gray-700">Status</label>
-                <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm min-h-[46px]">
                   <option value="pending">Pendente</option><option value="received">Recebido</option>
                   <option value="partial">Parcial</option><option value="cancelled">Cancelado</option>
                 </select>
@@ -137,10 +137,10 @@ export function PurchaseFormDialog({ purchase, onClose, onSaved }: Props) {
             )}
           </div>
 
-          <div className="space-y-1">
+          <div className="space-y-2.5">
             <label className="block text-sm font-medium text-gray-700">Observações</label>
             <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={2}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+              className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[46px]" />
           </div>
 
           <div className="border-t border-gray-100 pt-4">

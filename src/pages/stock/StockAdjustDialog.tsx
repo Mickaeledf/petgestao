@@ -86,32 +86,32 @@ export function StockAdjustDialog({ item, onClose, onSaved }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 overflow-y-auto p-0 sm:p-4">
-      <div className="bg-white rounded-t-xl sm:rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto mx-0 sm:mx-4">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-0 sm:p-4">
+      <div className="bg-white rounded-t-xl sm:rounded-xl shadow-xl w-full max-w-xl max-h-[90vh] flex flex-col mx-0 sm:mx-4">
+        <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-gray-100 shrink-0">
           <h2 className="text-lg font-semibold text-gray-900">Ajustar estoque</h2>
           <button onClick={onClose} className="p-1 rounded-lg hover:bg-gray-100"><X className="w-5 h-5 text-gray-500" /></button>
         </div>
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-8 overflow-y-auto">
           {error && <div className="p-3 rounded-lg bg-danger-50 text-danger-700 text-sm">{error}</div>}
           <div className="p-3 rounded-lg bg-gray-50">
             <p className="text-sm text-gray-600">Produto: <span className="font-medium text-gray-900">{item.product.name}</span></p>
             <p className="text-sm text-gray-600">Estoque atual: <span className="font-medium text-gray-900">{item.quantity}</span></p>
           </div>
-          <div className="space-y-1">
+          <div className="space-y-2.5">
             <label className="block text-sm font-medium text-gray-700">Tipo de movimentação *</label>
             <select value={movementType} onChange={(e) => setMovementType(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+              className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[46px]">
               {MOVEMENT_TYPES.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
             </select>
           </div>
           <Input label="Quantidade *" type="number" step="0.001" min="0.001" value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
             helpText={isPositive ? 'Será adicionado ao estoque' : 'Será removido do estoque'} />
-          <div className="space-y-1">
+          <div className="space-y-2.5">
             <label className="block text-sm font-medium text-gray-700">Motivo</label>
             <textarea value={reason} onChange={(e) => setReason(e.target.value)} rows={2}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+              className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[46px]" />
           </div>
           {quantity && Number(quantity) > 0 && (
             <div className="p-3 rounded-lg bg-primary-50 text-sm">

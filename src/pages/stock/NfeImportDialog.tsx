@@ -208,9 +208,9 @@ export function NfeImportDialog({ onClose, onSaved }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 overflow-y-auto p-0 sm:p-4">
-      <div className="bg-white rounded-t-xl sm:rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto mx-0 sm:mx-4">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-0 sm:p-4">
+      <div className="bg-white rounded-t-xl sm:rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col mx-0 sm:mx-4">
+        <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-gray-100 shrink-0">
           <div className="flex items-center gap-2">
             <FileText className="w-5 h-5 text-primary-600" />
             <h2 className="text-lg font-semibold text-gray-900">Importar NF-e</h2>
@@ -241,7 +241,7 @@ export function NfeImportDialog({ onClose, onSaved }: Props) {
 
           {step === 'review' && nfe && (
             <div className="space-y-4">
-              <div className="p-3 rounded-lg bg-gray-50 text-sm space-y-1">
+              <div className="p-3 rounded-lg bg-gray-50 text-sm space-y-2">
                 <p><span className="text-gray-500">NF-e:</span> <span className="font-medium">{nfe.numero}</span> <span className="text-gray-400">Série {nfe.serie}</span></p>
                 <p><span className="text-gray-500">Emitente:</span> <span className="font-medium">{nfe.emitente}</span></p>
                 {nfe.dataEmissao && <p><span className="text-gray-500">Data:</span> {new Date(nfe.dataEmissao + 'T00:00:00').toLocaleDateString('pt-BR')}</p>}

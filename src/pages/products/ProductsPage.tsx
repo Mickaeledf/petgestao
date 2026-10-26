@@ -68,7 +68,7 @@ export function ProductsPage() {
       />
 
       <Card>
-        <div className="p-5 border-b border-gray-100">
+        <div className="px-6 py-7 sm:px-8 border-b border-gray-100">
           <div className="flex gap-2 max-w-lg">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -92,8 +92,9 @@ export function ProductsPage() {
 
         <CardContent className="p-0">
           {loading ? (
-            <div className="flex items-center justify-center py-12">
+            <div className="flex flex-col items-center justify-center py-12 gap-3">
               <div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" />
+              <p className="text-sm text-gray-500">Carregando…</p>
             </div>
           ) : filtered.length === 0 && search ? (
             <EmptyState
@@ -106,13 +107,13 @@ export function ProductsPage() {
               <table className="w-full text-sm table-auto">
                 <thead>
                   <tr className="border-b border-gray-100 text-left">
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500">Nome</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden md:table-cell whitespace-nowrap">Categoria</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 hidden lg:table-cell whitespace-nowrap">Código</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right hidden sm:table-cell whitespace-nowrap">Custo</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right whitespace-nowrap">Preço</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 text-right hidden md:table-cell whitespace-nowrap">Estoque</th>
-                    <th className="px-4 sm:px-6 py-3 font-medium text-gray-500 whitespace-nowrap">Status</th>
+                    <th className="px-4 sm:px-6 py-5 font-medium text-gray-500">Nome</th>
+                    <th className="px-4 sm:px-6 py-5 font-medium text-gray-500 hidden md:table-cell whitespace-nowrap">Categoria</th>
+                    <th className="px-4 sm:px-6 py-5 font-medium text-gray-500 hidden lg:table-cell whitespace-nowrap">Código</th>
+                    <th className="px-4 sm:px-6 py-5 font-medium text-gray-500 text-right hidden sm:table-cell whitespace-nowrap">Custo</th>
+                    <th className="px-4 sm:px-6 py-5 font-medium text-gray-500 text-right whitespace-nowrap">Preço</th>
+                    <th className="px-4 sm:px-6 py-5 font-medium text-gray-500 text-right hidden md:table-cell whitespace-nowrap">Estoque</th>
+                    <th className="px-4 sm:px-6 py-5 font-medium text-gray-500 whitespace-nowrap">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -122,17 +123,17 @@ export function ProductsPage() {
                       className="border-b border-gray-50 hover:bg-gray-50 cursor-pointer"
                       onClick={() => { setEditingProduct(product); setShowForm(true) }}
                     >
-                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{product.name}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600 hidden md:table-cell">{product.category?.name ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-500 font-mono text-xs hidden lg:table-cell">{product.internal_code ?? '—'}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600 text-right hidden sm:table-cell">{formatCurrency(product.cost_price)}</td>
-                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900 text-right">{formatCurrency(product.sale_price)}</td>
-                      <td className="px-4 sm:px-6 py-3 text-right hidden md:table-cell whitespace-nowrap">
+                      <td className="px-4 sm:px-6 py-5 font-medium text-gray-900">{product.name}</td>
+                      <td className="px-4 sm:px-6 py-5 text-gray-600 hidden md:table-cell">{product.category?.name ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-5 text-gray-500 font-mono text-xs hidden lg:table-cell">{product.internal_code ?? '—'}</td>
+                      <td className="px-4 sm:px-6 py-5 text-gray-600 text-right hidden sm:table-cell">{formatCurrency(product.cost_price)}</td>
+                      <td className="px-4 sm:px-6 py-5 font-medium text-gray-900 text-right">{formatCurrency(product.sale_price)}</td>
+                      <td className="px-4 sm:px-6 py-5 text-right hidden md:table-cell whitespace-nowrap">
                         <span className={product.minimum_stock > 0 && (product as Product & { stock_balance?: number }).stock_balance !== undefined ? 'text-danger-600' : 'text-gray-600'}>
                           —
                         </span>
                       </td>
-                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap">
+                      <td className="px-4 sm:px-6 py-5 whitespace-nowrap">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                           product.active ? 'bg-success-50 text-success-700' : 'bg-gray-100 text-gray-600'
                         }`}>
@@ -148,13 +149,13 @@ export function ProductsPage() {
                     { name: 'Tapete Higiênico 30un', cat: 'Higiene', code: 'HIG-020', cost: 22.00, price: 45.90, stock: 30 },
                   ].map((g, i) => (
                     <tr key={i} className="border-b border-gray-50 opacity-40 pointer-events-none select-none">
-                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900">{g.name}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600 hidden md:table-cell">{g.cat}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-500 font-mono text-xs hidden lg:table-cell">{g.code}</td>
-                      <td className="px-4 sm:px-6 py-3 text-gray-600 text-right hidden sm:table-cell">{formatCurrency(g.cost)}</td>
-                      <td className="px-4 sm:px-6 py-3 font-medium text-gray-900 text-right">{formatCurrency(g.price)}</td>
-                      <td className="px-4 sm:px-6 py-3 text-right hidden md:table-cell whitespace-nowrap">{g.stock}</td>
-                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap">
+                      <td className="px-4 sm:px-6 py-5 font-medium text-gray-900">{g.name}</td>
+                      <td className="px-4 sm:px-6 py-5 text-gray-600 hidden md:table-cell">{g.cat}</td>
+                      <td className="px-4 sm:px-6 py-5 text-gray-500 font-mono text-xs hidden lg:table-cell">{g.code}</td>
+                      <td className="px-4 sm:px-6 py-5 text-gray-600 text-right hidden sm:table-cell">{formatCurrency(g.cost)}</td>
+                      <td className="px-4 sm:px-6 py-5 font-medium text-gray-900 text-right">{formatCurrency(g.price)}</td>
+                      <td className="px-4 sm:px-6 py-5 text-right hidden md:table-cell whitespace-nowrap">{g.stock}</td>
+                      <td className="px-4 sm:px-6 py-5 whitespace-nowrap">
                         <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-success-50 text-success-700">Ativo</span>
                       </td>
                     </tr>

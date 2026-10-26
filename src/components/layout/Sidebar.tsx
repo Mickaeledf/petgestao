@@ -2,28 +2,34 @@ import {
   BarChart3,
   Box,
   Calendar,
+  Cloud,
   CreditCard,
   Dog,
   DollarSign,
   FileText,
   Home,
   Key,
+  LogOut,
   Monitor,
+  Moon,
   Package,
+  PawPrint,
   Scissors,
   Settings,
   ShoppingCart,
+  Sun,
   Truck,
   UserCog,
   Users,
   Users2,
   Clipboard,
   X,
-  PawPrint,
 } from 'lucide-react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
 import { usePermissions } from '@/hooks/usePermissions'
+import { useAuth } from '@/contexts/AuthContext'
+import { useTheme } from '@/contexts/ThemeContext'
 import type { AppModule } from '@/types'
 
 const menuGroups: { label: string; items: { path: string; label: string; icon: typeof Home; module: AppModule }[] }[] = [
@@ -76,6 +82,8 @@ interface SidebarProps {
 export function Sidebar({ open, onClose }: SidebarProps) {
   const location = useLocation()
   const { canView, loading: permLoading } = usePermissions()
+  const { user, currentEstablishment, signOut } = useAuth()
+  const { theme, toggleTheme } = useTheme()
 
   const prevPath = useRef(location.pathname)
   useEffect(() => {
@@ -102,13 +110,15 @@ export function Sidebar({ open, onClose }: SidebarProps) {
       )}
 
       <aside
-        className={`fixed top-0 left-0 h-full bg-sidebar z-50 flex flex-col transition-all duration-300 w-64
+        className={`fixed top-0 left-0 h-full z-50 flex flex-col transition-all duration-300
           ${open ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0
         `}
+        style={{ width: '240px', background: 'linear-gradient(180deg, var(--color-sidebar) 0%, var(--color-sidebar-dark) 100%)' }}
       >
+        {/* Logo e nome */}
         <div className="flex items-center justify-between h-16 px-4 border-b border-white/10">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 bg-gradient-to-br from-indigo-400 to-violet-600 rounded-xl flex items-center justify-center shadow-lg">
+            <div className="w-9 h-9 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl flex items-center justify-center shadow-lg">
               <PawPrint className="w-5 h-5 text-white" />
             </div>
             <span className="text-lg font-bold text-white tracking-tight">PetGestão</span>
@@ -121,6 +131,16 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           </button>
         </div>
 
+        {/* Nome da empresa */}
+        {currentEstablishment && (
+          <div className="px-4 py-2.5 border-b border-white/5">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-sidebar-text/50">
+              {currentEstablishment.name}
+            </p>
+          </div>
+        )}
+
+        {/* Menu de navegação */}
         <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-4">
           {filteredGroups.map((group) => (
             <div key={group.label}>
@@ -134,14 +154,14 @@ export function Sidebar({ open, onClose }: SidebarProps) {
                     to={item.path}
                     end={item.path === '/'}
                     className={({ isActive }) =>
-                      `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
+                      `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
                         isActive
-                          ? 'bg-gradient-to-r from-indigo-500/20 to-violet-500/10 text-indigo-300 font-medium border-l-2 border-indigo-400'
+                          ? 'bg-primary-500/20 text-primary-300 font-medium'
                           : 'text-sidebar-text hover:bg-white/5 hover:text-white'
                       }`
                     }
                   >
-                    <item.icon className="w-5 h-5 shrink-0" />
+                    <item.icon className="w-[18px] h-[18px] shrink-0" />
                     <span>{item.label}</span>
                   </NavLink>
                 ))}
@@ -150,8 +170,38 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-white/10">
-          <p className="text-[11px] text-sidebar-text/40">PetGestão v0.1.0</p>
+        {/* Rodapé do sidebar */}
+        <div className="border-t border-white/10 px-3 py-3 space-y-1">
+          {/* Toggle Dark / Light */}
+          <button
+            onClick={toggleTheme}
+            className="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-sidebar-text hover:bg-white/5 hover:text-white transition-colors"
+          >
+            {theme === 'dark' ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
+            <span>{theme === 'dark' ? 'Modo claro' : 'Modo escuro'}</span>
+          </button>
+
+          {/* Status nuvem */}
+          <div className="flex items-center gap-2 px-3 py-1.5 text-[11px] text-sidebar-text/50">
+            <Cloud className="w-3.5 h-3.5" />
+            <span>Salvo na nuvem</span>
+          </div>
+
+          {/* Email logado */}
+          <div className="px-3 py-1">
+            <p className="text-[11px] text-sidebar-text/40 truncate">
+              {user?.email ?? ''}
+            </p>
+          </div>
+
+          {/* Sair */}
+          <button
+            onClick={signOut}
+            className="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-danger-400 hover:bg-danger-500/10 transition-colors"
+          >
+            <LogOut className="w-[18px] h-[18px]" />
+            <span>Sair</span>
+          </button>
         </div>
       </aside>
     </>

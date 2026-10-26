@@ -331,7 +331,7 @@ export function PDVPage() {
         {/* Left side - Search + Actions */}
         <div className="lg:w-96 xl:w-[420px] bg-white border-b lg:border-b-0 lg:border-r border-gray-200 flex flex-col shrink-0">
           {/* Search input */}
-          <div className="p-5 border-b border-gray-100">
+          <div className="px-6 py-7 sm:px-8 border-b border-gray-100">
             <div className="flex gap-2">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />

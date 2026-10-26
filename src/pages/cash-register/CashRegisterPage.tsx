@@ -119,7 +119,8 @@ export function CashRegisterPage() {
 
   if (loading) {
     return (<div><PageHeader title="Caixa" description="Controle de caixa" />
-      <div className="flex items-center justify-center py-12"><div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" /></div></div>)
+      <div className="flex flex-col items-center justify-center py-12 gap-3"><div className="w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" />
+              <p className="text-sm text-gray-500">Carregando…</p></div></div>)
   }
 
   return (
@@ -135,11 +136,11 @@ export function CashRegisterPage() {
           <Button onClick={openRegister} loading={actionLoading}><Unlock className="w-4 h-4" /> Abrir caixa</Button>
         </CardContent></Card>
       ) : (
-        <div className="space-y-6">
+        <div className="space-y-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Saldo inicial</p><p className="text-xl font-bold text-gray-900">{fmt(currentRegister.opening_balance)}</p></CardContent></Card>
-            <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Entradas</p><p className="text-xl font-bold text-success-600">{fmt(movements.filter((m) => m.amount > 0 && m.movement_type !== 'opening').reduce((s, m) => s + m.amount, 0))}</p></CardContent></Card>
-            <Card><CardContent className="p-4 text-center"><p className="text-xs text-gray-500 uppercase">Saídas</p><p className="text-xl font-bold text-danger-600">{fmt(Math.abs(movements.filter((m) => m.amount < 0).reduce((s, m) => s + m.amount, 0)))}</p></CardContent></Card>
+            <Card><CardContent className="py-6 px-6 text-center"><p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Saldo inicial</p><p className="text-2xl font-bold text-gray-900">{fmt(currentRegister.opening_balance)}</p></CardContent></Card>
+            <Card><CardContent className="py-6 px-6 text-center"><p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Entradas</p><p className="text-2xl font-bold text-success-600">{fmt(movements.filter((m) => m.amount > 0 && m.movement_type !== 'opening').reduce((s, m) => s + m.amount, 0))}</p></CardContent></Card>
+            <Card><CardContent className="py-6 px-6 text-center"><p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Saídas</p><p className="text-2xl font-bold text-danger-600">{fmt(Math.abs(movements.filter((m) => m.amount < 0).reduce((s, m) => s + m.amount, 0)))}</p></CardContent></Card>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card><CardHeader><h3 className="font-semibold text-gray-900">Retirada</h3></CardHeader>
@@ -155,18 +156,18 @@ export function CashRegisterPage() {
             <CardContent className="p-0">
               {movements.length === 0 ? <p className="text-center text-gray-400 py-6 text-sm">Nenhuma movimentação</p> : (
                 <table className="w-full text-sm"><thead><tr className="border-b border-gray-100 text-left">
-                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Tipo</th><th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Descrição</th>
-                  <th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap text-right">Valor</th><th className="px-4 sm:px-6 py-3.5 font-medium text-gray-500 whitespace-nowrap">Hora</th>
+                  <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Tipo</th><th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Descrição</th>
+                  <th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap text-right">Valor</th><th className="px-4 sm:px-6 py-4 font-medium text-gray-500 whitespace-nowrap">Hora</th>
                 </tr></thead><tbody>{movements.map((m) => (
                   <tr key={m.id} className="border-b border-gray-50">
-                    <td className="px-4 sm:px-6 py-4 text-gray-600">{movTypeLabel[m.movement_type] ?? m.movement_type}</td>
-                    <td className="px-4 sm:px-6 py-4 text-gray-600">{m.description ?? '—'}</td>
-                    <td className={`px-4 sm:px-6 py-4 font-medium text-right whitespace-nowrap ${m.amount >= 0 ? 'text-success-600' : 'text-danger-600'}`}>{m.amount >= 0 ? '+' : ''}{fmt(m.amount)}</td>
-                    <td className="px-4 sm:px-6 py-4 text-gray-500 text-xs whitespace-nowrap">{fmtDate(m.created_at)}</td>
+                    <td className="px-4 sm:px-6 py-5 text-gray-600">{movTypeLabel[m.movement_type] ?? m.movement_type}</td>
+                    <td className="px-4 sm:px-6 py-5 text-gray-600">{m.description ?? '—'}</td>
+                    <td className={`px-4 sm:px-6 py-5 font-medium text-right whitespace-nowrap ${m.amount >= 0 ? 'text-success-600' : 'text-danger-600'}`}>{m.amount >= 0 ? '+' : ''}{fmt(m.amount)}</td>
+                    <td className="px-4 sm:px-6 py-5 text-gray-500 text-xs whitespace-nowrap">{fmtDate(m.created_at)}</td>
                   </tr>))}</tbody></table>)}
             </CardContent></Card>
-          <Card><CardContent className="p-4 flex items-center gap-4">
-            <Input label="Valor em caixa (contagem)" type="number" step="0.01" value={closingBalance} onChange={(e) => setClosingBalance(e.target.value)} />
+          <Card><CardContent className="flex items-end gap-6">
+            <div className="flex-1"><Input label="Valor em caixa (contagem)" type="number" step="0.01" value={closingBalance} onChange={(e) => setClosingBalance(e.target.value)} /></div>
             <Button variant="danger" onClick={closeRegister} loading={actionLoading} disabled={!closingBalance}><Lock className="w-4 h-4" /> Fechar caixa</Button>
           </CardContent></Card>
         </div>

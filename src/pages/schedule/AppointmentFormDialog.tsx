@@ -82,69 +82,69 @@ export function AppointmentFormDialog({ appointment, defaultDate, onClose, onSav
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 overflow-y-auto p-0 sm:p-4">
-      <div className="bg-white rounded-t-xl sm:rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto mx-0 sm:mx-4">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-0 sm:p-4">
+      <div className="bg-white rounded-t-xl sm:rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col mx-0 sm:mx-4">
+        <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-gray-100 shrink-0">
           <h2 className="text-lg font-semibold text-gray-900">{appointment ? 'Editar agendamento' : 'Novo agendamento'}</h2>
           <button onClick={onClose} className="p-1 rounded-lg hover:bg-gray-100"><X className="w-5 h-5 text-gray-500" /></button>
         </div>
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-8 overflow-y-auto">
           {error && <div className="p-3 rounded-lg bg-danger-50 text-danger-700 text-sm">{error}</div>}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-2.5">
               <label className="block text-sm font-medium text-gray-700">Cliente *</label>
               <select value={customerId} onChange={(e) => { setCustomerId(e.target.value); setPetId('') }}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm min-h-[46px]">
                 <option value="">Selecione...</option>
                 {customers.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
               </select>
             </div>
-            <div className="space-y-1">
+            <div className="space-y-2.5">
               <label className="block text-sm font-medium text-gray-700">Pet *</label>
               <select value={petId} onChange={(e) => setPetId(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" disabled={!customerId}>
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm min-h-[46px]" disabled={!customerId}>
                 <option value="">Selecione...</option>
                 {pets.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
               </select>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-2.5">
               <label className="block text-sm font-medium text-gray-700">Serviço</label>
               <select value={serviceId} onChange={(e) => onServiceChange(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm min-h-[46px]">
                 <option value="">Selecione...</option>
                 {services.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
               </select>
             </div>
-            <div className="space-y-1">
+            <div className="space-y-2.5">
               <label className="block text-sm font-medium text-gray-700">Profissional</label>
               <select value={professionalId} onChange={(e) => setProfessionalId(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm min-h-[46px]">
                 <option value="">Qualquer</option>
                 {professionals.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
               </select>
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <Input label="Data *" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
             <Input label="Início *" type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
             <Input label="Fim" type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
             <Input label="Valor (R$)" type="number" step="0.01" value={price} onChange={(e) => setPrice(e.target.value)} />
           </div>
           {appointment && (
-            <div className="space-y-1">
+            <div className="space-y-2.5">
               <label className="block text-sm font-medium text-gray-700">Status</label>
-              <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+              <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm min-h-[46px]">
                 <option value="scheduled">Agendado</option><option value="confirmed">Confirmado</option><option value="in_progress">Em andamento</option>
                 <option value="completed">Concluído</option><option value="cancelled">Cancelado</option><option value="no_show">Não compareceu</option>
               </select>
             </div>
           )}
-          <div className="space-y-1">
+          <div className="space-y-2.5">
             <label className="block text-sm font-medium text-gray-700">Observações</label>
             <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={2}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" />
+              className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[46px]" />
           </div>
           <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
             <Button variant="secondary" type="button" onClick={onClose}>Cancelar</Button>
