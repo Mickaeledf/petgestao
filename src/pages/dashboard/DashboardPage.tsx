@@ -94,7 +94,7 @@ export function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-8">
         <div className="h-36 bg-gray-100 rounded-2xl animate-pulse" />
         <div className="grid grid-cols-4 gap-4">
           {[1,2,3,4].map(i => <div key={i} className="h-28 bg-gray-100 rounded-2xl animate-pulse" />)}
@@ -143,7 +143,7 @@ export function DashboardPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
 
       {/* ===== BANNER DE BOAS-VINDAS ===== */}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary-800 via-primary-700 to-primary-900 p-6 lg:p-8 shadow-xl border border-primary-700/50">
@@ -219,7 +219,7 @@ export function DashboardPage() {
       </div>
 
       {/* ===== GRÁFICO + PAINÉIS LATERAIS ===== */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
         {/* Gráfico Visão Geral */}
         <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-200 p-6 shadow-sm flex flex-col justify-between">
@@ -246,7 +246,7 @@ export function DashboardPage() {
         </div>
 
         {/* Painel Direito */}
-        <div className="space-y-6">
+        <div className="space-y-8">
 
           {/* Atividades Recentes */}
           <div className="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
@@ -291,7 +291,7 @@ export function DashboardPage() {
       </div>
 
       {/* ===== TRÊS PAINÉIS DE ALERTAS ===== */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
         {/* Alertas de estoque */}
         <div className="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm h-48 flex flex-col">
