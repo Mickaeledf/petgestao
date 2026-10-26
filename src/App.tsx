@@ -26,6 +26,8 @@ import { ReportsPage } from '@/pages/reports/ReportsPage'
 import { UsersPage } from '@/pages/users/UsersPage'
 import { SettingsPage } from '@/pages/settings/SettingsPage'
 import { LicensePage } from '@/pages/license/LicensePage'
+import { MessagesPage } from '@/pages/messages/MessagesPage'
+import { SupportPage } from '@/pages/support/SupportPage'
 import { OnboardingPage } from '@/pages/onboarding/OnboardingPage'
 import { AccessDeniedPage } from '@/pages/auth/AccessDeniedPage'
 import type { ReactNode } from 'react'
@@ -101,6 +103,8 @@ function AppRoutes() {
         <Route path="users" element={<RequirePermission module="users" fallback={denied}><UsersPage /></RequirePermission>} />
         <Route path="settings" element={<RequirePermission module="settings" fallback={denied}><SettingsPage /></RequirePermission>} />
         <Route path="license" element={<RequirePermission module="license" fallback={denied}><LicensePage /></RequirePermission>} />
+        <Route path="messages" element={<MessagesPage />} />
+        <Route path="support" element={<SupportPage />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />

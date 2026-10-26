@@ -74,15 +74,15 @@
 }
 
 [data-theme="dark"] {
-  --bg-page: #0f1a17;
-  --bg-card: #1a2b25;
-  --bg-input: #1f3029;
-  --border-color: #2a3f36;
-  --border-light: #233530;
-  --text-primary: #e8f0ec;
-  --text-secondary: #9aada2;
-  --text-muted: #6b8078;
-  --shadow-card: 0 1px 3px rgba(0,0,0,0.3);
+  --bg-page: #081c18;
+  --bg-card: #12332c;
+  --bg-input: #1a4037;
+  --border-color: #1a4037;
+  --border-light: #1a4037;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 /* ===== Reset e base ===== */
@@ -112,25 +112,25 @@ body {
   background-color: var(--bg-page) !important;
 }
 [data-theme="dark"] .bg-gray-100 {
-  background-color: #233530 !important;
+  background-color: #0d2822 !important;
 }
 [data-theme="dark"] .text-gray-900 {
   color: var(--text-primary) !important;
 }
 [data-theme="dark"] .text-gray-800 {
-  color: #d0ddd5 !important;
+  color: #e2e8f0 !important;
 }
 [data-theme="dark"] .text-gray-700 {
-  color: #b0c4b8 !important;
+  color: #cbd5e1 !important;
 }
 [data-theme="dark"] .text-gray-600 {
-  color: var(--text-secondary) !important;
+  color: #94a3b8 !important;
 }
 [data-theme="dark"] .text-gray-500 {
-  color: var(--text-muted) !important;
+  color: #64748b !important;
 }
 [data-theme="dark"] .text-gray-400 {
-  color: #6b8078 !important;
+  color: #64748b !important;
 }
 [data-theme="dark"] .border-gray-200,
 [data-theme="dark"] .border-gray-100 {
@@ -140,20 +140,20 @@ body {
   border-color: var(--border-light) !important;
 }
 [data-theme="dark"] .border-gray-300 {
-  border-color: #3a5246 !important;
+  border-color: #1a4037 !important;
 }
 [data-theme="dark"] .hover\:bg-gray-50:hover {
-  background-color: #233530 !important;
+  background-color: #1a4037 !important;
 }
 [data-theme="dark"] .hover\:bg-gray-100:hover {
-  background-color: #2a3f36 !important;
+  background-color: #1a4037 !important;
 }
 [data-theme="dark"] input,
 [data-theme="dark"] textarea,
 [data-theme="dark"] select {
-  background-color: var(--bg-input) !important;
+  background-color: #0d2822 !important;
   color: var(--text-primary) !important;
-  border-color: #3a5246 !important;
+  border-color: #1a4037 !important;
 }
 [data-theme="dark"] input::placeholder,
 [data-theme="dark"] textarea::placeholder {
@@ -170,6 +170,151 @@ body {
 }
 [data-theme="dark"] .divide-gray-50 > :not(:first-child) {
   border-color: var(--border-light) !important;
+}
+[data-theme="dark"] .divide-gray-100 > :not(:first-child) {
+  border-color: var(--border-color) !important;
+}
+
+/* --- Tabelas dark --- */
+[data-theme="dark"] table {
+  color: var(--text-primary);
+}
+[data-theme="dark"] thead tr {
+  background-color: #0d2822 !important;
+}
+[data-theme="dark"] th {
+  color: #94a3b8 !important;
+  border-color: #1a4037 !important;
+}
+[data-theme="dark"] tbody tr {
+  border-color: #1a4037 !important;
+}
+[data-theme="dark"] tbody tr:hover {
+  background-color: #1a4037 !important;
+}
+[data-theme="dark"] td {
+  border-color: #1a4037 !important;
+}
+
+/* --- Status badges dark --- */
+[data-theme="dark"] .bg-primary-50 {
+  background-color: rgba(20, 184, 166, 0.15) !important;
+}
+[data-theme="dark"] .bg-success-50 {
+  background-color: rgba(34, 197, 94, 0.15) !important;
+}
+[data-theme="dark"] .bg-warning-50 {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+}
+[data-theme="dark"] .bg-danger-50 {
+  background-color: rgba(239, 68, 68, 0.15) !important;
+}
+[data-theme="dark"] .bg-info-50 {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+}
+[data-theme="dark"] .text-primary-700 {
+  color: #2dd4bf !important;
+}
+[data-theme="dark"] .text-success-700 {
+  color: #4ade80 !important;
+}
+[data-theme="dark"] .text-warning-700 {
+  color: #fbbf24 !important;
+}
+[data-theme="dark"] .text-danger-700 {
+  color: #f87171 !important;
+}
+[data-theme="dark"] .text-info-700 {
+  color: #60a5fa !important;
+}
+
+/* --- Text primary shades dark --- */
+[data-theme="dark"] .text-primary-600 {
+  color: #2dd4bf !important;
+}
+[data-theme="dark"] .text-primary-500 {
+  color: #14b8a6 !important;
+}
+
+/* --- Mais bg overrides --- */
+[data-theme="dark"] .bg-gray-200 {
+  background-color: #1a4037 !important;
+}
+[data-theme="dark"] .bg-primary-100 {
+  background-color: rgba(20, 184, 166, 0.15) !important;
+}
+
+/* --- Focus ring offset --- */
+[data-theme="dark"] .focus\:ring-offset-2:focus {
+  --tw-ring-offset-color: var(--bg-card) !important;
+}
+
+/* --- Botão secondary dark --- */
+[data-theme="dark"] button.bg-white,
+[data-theme="dark"] .bg-white[class*="border-gray-300"] {
+  background-color: #0d2822 !important;
+  border-color: #1a4037 !important;
+  color: #cbd5e1 !important;
+}
+
+/* --- Scrollbar dark --- */
+[data-theme="dark"] ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #081c18;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #1a4037;
+  border-radius: 3px;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #245a4e;
+}
+
+/* --- Checkbox dark --- */
+[data-theme="dark"] input[type="checkbox"] {
+  background-color: #0d2822 !important;
+  border-color: #1a4037 !important;
+}
+[data-theme="dark"] input[type="checkbox"]:checked {
+  background-color: #14b8a6 !important;
+  border-color: #14b8a6 !important;
+}
+
+/* --- Dialog / modal overlay dark --- */
+[data-theme="dark"] .bg-black\/40 {
+  background-color: rgba(0,0,0,0.7) !important;
+}
+
+/* --- Hover text dark --- */
+[data-theme="dark"] .hover\:text-gray-900:hover {
+  color: #f1f5f9 !important;
+}
+[data-theme="dark"] .hover\:text-gray-700:hover {
+  color: #e2e8f0 !important;
+}
+
+/* --- Rings / outlines --- */
+[data-theme="dark"] .ring-gray-200 {
+  --tw-ring-color: #1a4037 !important;
+}
+
+/* --- Header dark --- */
+[data-theme="dark"] header.bg-white {
+  background-color: rgba(13, 40, 34, 0.8) !important;
+}
+
+/* --- Botão secondary com classe marker --- */
+[data-theme="dark"] .dark-secondary {
+  background-color: #0d2822 !important;
+  border-color: #1a4037 !important;
+  color: #cbd5e1 !important;
+}
+[data-theme="dark"] .dark-secondary:hover {
+  background-color: #1a4037 !important;
+  color: #f1f5f9 !important;
 }
 
 /* ===== Animações ===== */

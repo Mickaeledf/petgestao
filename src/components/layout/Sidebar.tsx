@@ -7,9 +7,11 @@ import {
   Dog,
   DollarSign,
   FileText,
+  HelpCircle,
   Home,
   Key,
   LogOut,
+  MessageSquare,
   Monitor,
   Moon,
   Package,
@@ -68,7 +70,6 @@ const menuGroups: { label: string; items: { path: string; label: string; icon: t
       { path: '/financial', label: 'Financeiro', icon: DollarSign, module: 'financial' },
       { path: '/reports', label: 'Relatórios', icon: BarChart3, module: 'reports' },
       { path: '/users', label: 'Usuários', icon: UserCog, module: 'users' },
-      { path: '/settings', label: 'Configurações', icon: Settings, module: 'settings' },
       { path: '/license', label: 'Licença', icon: Key, module: 'license' },
     ],
   },
@@ -99,6 +100,13 @@ export function Sidebar({ open, onClose }: SidebarProps) {
       items: group.items.filter((item) => permLoading || canView(item.module)),
     }))
     .filter((group) => group.items.length > 0)
+
+  const linkClass = (isActive: boolean) =>
+    `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
+      isActive
+        ? 'bg-primary-500/20 text-primary-300 font-medium'
+        : 'text-sidebar-text hover:bg-white/5 hover:text-white'
+    }`
 
   return (
     <>
@@ -153,13 +161,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
                     key={item.path}
                     to={item.path}
                     end={item.path === '/'}
-                    className={({ isActive }) =>
-                      `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
-                        isActive
-                          ? 'bg-primary-500/20 text-primary-300 font-medium'
-                          : 'text-sidebar-text hover:bg-white/5 hover:text-white'
-                      }`
-                    }
+                    className={({ isActive }) => linkClass(isActive)}
                   >
                     <item.icon className="w-[18px] h-[18px] shrink-0" />
                     <span>{item.label}</span>
@@ -170,9 +172,23 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           ))}
         </nav>
 
-        {/* Rodapé do sidebar */}
-        <div className="border-t border-white/10 px-3 py-3 space-y-1">
-          {/* Toggle Dark / Light */}
+        {/* Rodapé: Mensagens, Suporte, Configurações, tema, nuvem, email, sair */}
+        <div className="border-t border-white/10 px-2 py-2 space-y-0.5">
+          <NavLink to="/messages" className={({ isActive }) => linkClass(isActive)}>
+            <MessageSquare className="w-[18px] h-[18px] shrink-0" />
+            <span>Mensagens</span>
+          </NavLink>
+
+          <NavLink to="/support" className={({ isActive }) => linkClass(isActive)}>
+            <HelpCircle className="w-[18px] h-[18px] shrink-0" />
+            <span>Suporte</span>
+          </NavLink>
+
+          <NavLink to="/settings" className={({ isActive }) => linkClass(isActive)}>
+            <Settings className="w-[18px] h-[18px] shrink-0" />
+            <span>Configurações</span>
+          </NavLink>
+
           <button
             onClick={toggleTheme}
             className="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-sidebar-text hover:bg-white/5 hover:text-white transition-colors"
@@ -180,24 +196,19 @@ export function Sidebar({ open, onClose }: SidebarProps) {
             {theme === 'dark' ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
             <span>{theme === 'dark' ? 'Modo claro' : 'Modo escuro'}</span>
           </button>
+        </div>
 
-          {/* Status nuvem */}
-          <div className="flex items-center gap-2 px-3 py-1.5 text-[11px] text-sidebar-text/50">
+        <div className="border-t border-white/5 px-3 py-2 space-y-1">
+          <div className="flex items-center gap-2 px-0 py-1 text-[11px] text-sidebar-text/50">
             <Cloud className="w-3.5 h-3.5" />
             <span>Salvo na nuvem</span>
           </div>
-
-          {/* Email logado */}
-          <div className="px-3 py-1">
-            <p className="text-[11px] text-sidebar-text/40 truncate">
-              {user?.email ?? ''}
-            </p>
-          </div>
-
-          {/* Sair */}
+          <p className="text-[11px] text-sidebar-text/40 truncate">
+            {user?.email ?? ''}
+          </p>
           <button
             onClick={signOut}
-            className="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-danger-400 hover:bg-danger-500/10 transition-colors"
+            className="flex items-center gap-3 w-full px-0 py-2 rounded-lg text-sm text-danger-400 hover:text-danger-300 transition-colors"
           >
             <LogOut className="w-[18px] h-[18px]" />
             <span>Sair</span>
